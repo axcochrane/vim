@@ -1,0 +1,59 @@
+DATE           HOURS      POMS                          COMPLETED TASKS                      
+
+============================================================================
+Fri-01May2020  0947-1053  ----                          #vim_timer   
+Mon-04May2020  1100-0205  --.----.----.-----            #pomodoro_status_line #task_manager_add #pause_bug #long_break_bug task_manager_done #pom_restart #task_record_pom 
+Tue-05May2020  0247-0147  ----.----.----                #quiz
+ted-06May2020  0148-0038  -.-   
+Sat-09May2020  0039-2332  ----.----.----.----.           #admin_company_search #company_import_test #search_test_fix
+Sun-10May2020  0212-0639  - 
+Mon-11May2020  0039-0145  ----.----.----.----.-         #import_company_tests 
+Tue-12May2020  0458-1824  ----.----.----.----.----.--   #campaign_index_filters 
+Wed-13May2020  0349-0700  ----.----.   
+Thu-14May2020  XXXX-XXXX 
+Fri-15May2020  0108-0239  ---   
+Fri-15May2020  1417-1205  ----.--------.----.----.-     #domain_query_adapter #admin_data_dashboard 
+Sat-16May2020  1304-0744  --------.----.----.   
+Sun-17May2020  0941-1236  -------.----.--   
+Mon-18May2020  1836-0400  ----.----.--   
+Tue-19May2020  0229-6000  ----.----  
+Wed-20May2020  1439-1600  - 
+Thu-21May2020  0021-1228  ----.-----.--   
+Thu-21May2020  1535-0532  ----.----.-------.----        #unified_search_mvp #dashboard_navigation_tests 
+Fri-22May2020  1030-0553  ----.----.----.               #create_audience_bug #new_email_template_bug #new_experiment_bug 
+Sat-23May2020  0553-XXXX  ----.-----.----.----   
+Sun-24May2020  0152-XXXX  -   
+Tue-26May2020  2313-1805  ----.----.------.----.--      #filed_accounts_importer #filed_accounts_table 
+Wed-27May2020  1805-0200  -----.---.   
+Thu-28May2020  1856-0403  --   
+Sun-31May2020  0403-XXXX    
+Sun-31May2020  1905-2159  -----.----.----.----.----.---- #filed_accounts_search #filed_accounts_decorator 
+Tue-02Jun2020  0153-XXXX  ----.----  #javascript_sidebar_bugs #campaign_leads_bug 
+Fri-05Jun2020  0250-0919  ----.-  #create_audience_memberships #admin_edit_models #lead_activities_model 
+Fri-05Jun2020  0919-XXXX  ------.-----.  #filter_leads_bug 
+Sat-07Jun2020  0135-XXXX  ----.-----  #contact_profile_search #dashboard_company_search
+Tue-09Jun2020  0406-1200  ---  #list_show_feature 
+Wed-10Jun2020  XXXX-XXXX    
+Thu-11Jun2020  XXXX-XXXX    
+Fri-12Jun2020  XXXX-XXXX    
+Sat-13Jun2020  0248-0417  --   
+Sun-14Jun2020  0417-1229  ---  #list_add_feature 
+Tue-16Jun2020  0429-XXXX  - 
+Fri-19Jun2020  0100-1200  ----.----  #add_to_list_bug #navmenu_select_helpers #list_add_feature
+Fri-19Jun2020  2102-0237  --   
+Thu-25Jun2020  0237-0211  ---  #list_nav_bug  #dashboard_calls_bug #dashboard_emails_bug
+Wed-01Jul2020  0404-1054  ----.----.--  #companies_query_spec
+Thu-02Jul2020  1056-1101  Football Video
+Fri-03Jul2020  XXXX-XXXX  Football Video
+Sat-04Jul2020  XXXX-XXXX  Taxomap
+Sun-05Jul2020  XXXX-XXXX  Taxomap
+Mon-06Jul2020  XXXX-XXXX  Taxomap
+Tue-07Jul2020  XXXX-XXXX  Taxomap
+Wed-08Jul2020  XXXX-XXXX  Taxomap
+Thu-09Jul2020  1218-2019  ----.----.----.- #company_search_form_spec #company_profile_search_form_spec
+Fri-10Jul2020  2019-XXXX  ----.----.----.----.---  #contact_search_form_spec #list_management #content_row_styling
+Fri-10Jul2020  2142-1205  ----.----
+Sat-11Jul2020  1740-2059    
+Sun-12Jul2020  2059-1555  ----.----.----.----  #content_portal_show_modal #linkedin_task_show_modal #button_styling #filter_leads_mvp #campaign_index_card_stats
+Mon-13Jul2020  1555-2159  ----.----.----.----  #email_decorator #add_demo_to_empty_dashboard #campaign_overview_stat_boxes #campaign_sales_process_bug #audience_rows 
+Mon-20Jul2020  0930-1425  #--   

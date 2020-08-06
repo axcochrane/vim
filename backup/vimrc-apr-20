@@ -1,0 +1,432 @@
+"########################################## 
+"# Vim Dependencies and Required paths    #
+"########################################## 
+set rtp+=~/.vim/bundle/Vundle.vim 
+set rtp+=/usr/local/opt/fzf 
+filetype on 
+filetype plugin on
+filetype indent on
+set path+=**
+set noreadonly
+set autochdir
+set nocompatible 
+set autoindent
+
+
+"########################################## 
+" Tab stop settings     								  #
+"########################################## 
+set tabstop=2 "This changes how big tab spaces appear"
+set softtabstop=2
+set shiftwidth=2 "This controls the width of >> shortcut"
+set numberwidth=4
+set laststatus=2
+set title
+set number
+set tags=./tags;
+
+"########################################## 
+"# Basic General Settings								  #
+"########################################## 
+syntax on             " Enable syntax highlighting
+filetype on           " Enable filetype detection
+filetype plugin on    " Enable filetype-specific plugins
+colorscheme monokai
+set relativenumber
+set lazyredraw  
+
+"########################################## 
+" Vundle Plugins        								  #
+"########################################## 
+call vundle#begin()
+	Plugin 'gmarik/Vundle.vim'
+	Plugin 'tpope/vim-rails'
+	Plugin 'vim-ruby/vim-ruby'
+	Plugin 'tpope/vim-surround'
+	Plugin 'tpope/vim-commentary'
+	Plugin 'townk/vim-autoclose'
+	Plugin 'junegunn/fzf'
+	Plugin 'MarcWeber/vim-addon-mw-utils'
+	Plugin 'junegunn/fzf.vim'
+	Plugin 'thoughtbot/vim-rspec'
+	Plugin 'mileszs/ack.vim'
+	Plugin 'tpope/vim-repeat'
+	Plugin 'tpope/vim-abolish'
+	Plugin 'simeji/winresizer'
+	Plugin 'preservim/nerdtree'
+	Plugin 'dbakker/vim-projectroot'
+	Plugin 'rainerborene/vim-reek'
+	Plugin 'justinmk/vim-sneak'
+	Plugin 'tomtom/tlib_vim'
+	Plugin 'tpope/vim-fugitive'
+	Plugin 'tpope/vim-endwise'         " enables autocompletion of
+	Plugin 'cakebaker/scss-syntax'		 " Enables syntax highlighting for scss
+	Plugin 'christoomey/vim-rfactory'	 " Enables RFactory shortcuts to access Rails Factory objects
+call vundle#end()										 " required
+filetype plugin indent on						 " required
+
+"########################################## 
+" Vim Snippets and Autocomplete					  #
+"########################################## 
+" we will use the inbuld Vim autocomplete tools <c-x> <c-n> 
+	
+"########################################## 
+" Common Shortcut Setings								  #
+"########################################## 
+let mapleader = "\<Space>"
+nnoremap <leader><leader> :
+set timeoutlen=700 ttimeoutlen=-1
+nnoremap S :w!<Cr>
+nnoremap Q @@
+nnoremap <leader><leader> :
+
+
+"########################################## 
+"# Navigation Shortcuts  								  #
+"########################################## 
+nnoremap <c-J> <C-W><C-J>    
+nnoremap <c-K> <C-W><C-K>
+nnoremap <c-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+nnoremap K 5k5<c-y>
+nnoremap J 5j5<c-e>
+nnoremap <Leader>o o<Esc>
+nnoremap <Leader>k <S-k>
+nnoremap <Leader>nl <S-j>
+
+"########################################## 
+"# Sneak Plugin Shortcut                  #
+"########################################## 
+" 2-character Sneak (default)
+map s <Plug>Sneak_s
+map <Leader>s <Plug>Sneak_S
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
+" visual-mode
+xmap s <Plug>Sneak_s
+xmap <Leader>S <Plug>Sneak_S
+xmap t <Plug>Sneak_t
+set ignorecase
+set incsearch
+
+"########################################## 
+"# Navigation Shortcuts  								  #
+"########################################## 
+nnoremap <leader>r :! cd ~/Enlist_rails && spring rspec %:p -f p <Cr>
+nnoremap <leader><leader> :
+nnoremap <leader>c :RunReek <Cr>  
+nmap <Leader>a :Ack -i   ~/enlist_rails <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+map <Leader>z :call Accordion()<Cr>
+nmap <C-P> :ProjectRootCD<Cr>:FZF<Cr>
+
+"########################################## 
+" Custom Accordion Window Arrangement     #
+"########################################## 
+let g:accordion = 0
+let minimal_mode = 0
+function! Accordion()
+	  if g:accordion  == 0
+		let minimal_mode = 0
+		let &winheight = (&lines *  100 / 100) + 1
+		let &winwidth = (&columns * 100 / 100) + 1
+		let g:accordion = 1
+		echo 'Accordion:1'
+	elseif g:accordion == 1
+		let minimal_mode = 0
+		let &winheight = &lines *  100 / 100
+		let &winwidth = &columns * 50 / 100
+		let NERDTreeWinSize=30
+		let g:accordion = 2
+		echo 'Accordion:2'
+	elseif g:accordion == 2
+		let minimal_mode = 1
+		let &winheight = &lines *  100 / 100
+		let &winwidth = &columns * 33 / 100
+		let NERDTreeWinSize=30
+		let g:accordion = 3
+		echo 'Accordion:3'
+	elseif g:accordion == 3
+		let minimal_mode = 1
+		let &winheight = 0
+		let &winwidth = 0
+		let NERDTreeWinSize=30
+		let g:accordion = 0
+		echo 'Accordion:4'
+	else
+	endif
+endfunction
+
+"#########################################
+"# TrimSpace command line function       #
+"#########################################
+function ShowSpaces(...)
+	let @/='\v(\s+$)|( +\ze\t)'
+	let oldhlsearch=&hlsearch
+	if !a:0
+		let &hlsearch=!&hlsearch
+	else
+		let &hlsearch=a:1
+	end
+	return oldhlsearch
+endfunction
+
+function TrimSpaces() range
+	let oldhlsearch=ShowSpaces(1)
+	execute a:firstline.",".a:lastline."substitute ///gec"
+	let &hlsearch=oldhlsearch
+endfunction
+
+command -bar -nargs=? ShowSpaces call ShowSpaces(<args>)
+command -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
+
+"#########################################
+"# NERDTree Settings                     #
+"#########################################
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif 
+let g:NERDTreeBookmarksFile = $HOME ."/.vim/bundle/nerdtree/bookmarks" "existing path to bookmark
+let NERDTreeQuitOnOpen = 1
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 0
+hi Directory ctermfg=DarkGrey
+hi NERDTreeOpenable ctermfg=236  cterm=none 
+hi NERDTreeClosable ctermfg=Yellow
+let NERDTreeOpenable='  '
+let NERDTreeDelimiter='  '
+hi NERDTreeNodeDelimiter ctermfg=DarkGrey
+hi NERDTreeCWD ctermfg=DarkGrey
+hi NERDTreePath ctermfg=Red
+hi NERDTreeDirNode ctermfg=Blue
+hi NERDTreeFileNode ctermfg=Green
+let NERDTreeAutoCenter=1 
+let NERDTreeAutoCenterThreshold=5
+let NERDTreeShowLineNumbers=1
+nnoremap <Leader>nt :NERDTree ~/enlist_rails<Cr> 
+nnoremap <Leader>nd :NERDTreeToggle<Cr>
+
+"########################################## 
+" Toggle Powerline Function							  #
+"########################################## 
+let &statusline='===== %y %t %m '
+set fillchars=stl:=
+hi StatusLine ctermbg=NONE ctermfg=40
+hi VertSplit ctermbg=NONE ctermfg=DarkGrey guibg=NONE
+highlight EndOfBuffer ctermbg=None
+let s:hidden_all = 0
+function! ToggleHiddenAll()
+if s:hidden_all  == 0
+	let s:hidden_all = 1
+	set noshowmode
+	set noruler
+	set laststatus=0
+	set noshowcmd
+	hi StatusLine ctermbg=NONE ctermfg=40
+	hi StatusLineNC ctermbg=NONE ctermfg=Red
+	let &statusline='===== %y %t %m '
+	set fillchars=stlnc:=
+	set showtabline=0
+else
+	let s:hidden_all = 0
+	set showmode
+	set ruler
+	set laststatus=2
+	set showcmd
+	let &statusline='===== %y %t %m '
+	set fillchars=stl:=
+	set fillchars+=stlnc:=
+	hi StatusLine ctermbg=NONE ctermfg=40
+	hi StatusLineNC ctermbg=NONE ctermfg=red
+	hi VertSplit ctermbg=NONE ctermfg=DarkGrey guibg=NONE
+	set showtabline=1
+	hi TabLineFill ctermfg=none ctermbg=none gui=none cterm=none
+	hi TabLine ctermfg=none ctermbg=none gui=none cterm=none
+	hi TabLineSel ctermfg=yellow ctermbg=none gui=none cterm=none
+	set fillchars+=vert:│
+endif
+endfunction
+autocmd VimEnter * call ToggleHiddenAll()
+nnoremap <Leader>h :call ToggleHiddenAll()<CR>
+
+"#########################################
+"# Airline extension (need installling   #
+"#########################################
+"set title "Think this is the filename in the bottom status bar line 
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline_statusline_ontop=1
+"let g:airline_detect_modified=1
+"set stl=%!airline#check_mode(winnr())
+"let g:airline_mode_map = {
+			" \ '__'     : '-',
+			" \ 'c'      : 'Clear & Insert',
+			" \ 'i'      : 'Insert',
+			" \ 'ic'     : 'Insert',
+			" \ 'ix'     : 'Insert',
+			" \ 'n'      : 'Normal',
+			" \ 'multi'  : 'Multi-Cursor',
+			" \ 'ni'     : 'N',
+			" \ 'no'     : 'N',
+			" \ 'R'      : 'Replace & Insert',
+			" \ 'Rv'     : 'Replace & Insert',
+			" \ 's'      : 'Substitute & Insert',
+			" \ 'S'      : 'Substitute & Insert',
+			" \ ''     : 'Substitute & Insert',
+			" \ 't'      : 'T',
+			" \ 'v'      : 'Visual',
+			" \ 'V'      : 'Visual',
+			" \ ''     : 'Visual',
+			" \ }
+" let g:airline_theme='simple'
+" let g:airline_section_a='%t'
+" let g:airline_section_b=airline#section#create(['mode'])
+" let g:airline_section_c='  '
+" let g:airline_section_x='  '
+" let g:airline_section_y='  '
+" let g:airline_section_z='  '
+" let g:airline_section_warning=''
+" let g:airline_section_gutter=''
+" let g:airline_section_error=''
+
+"#########################################
+"# Line and Cursor Highlighting          #
+"#########################################
+set cursorline
+highlight LineNr term=NONE cterm=NONE ctermfg=DarkGrey ctermbg=none
+highlight CursorLineNr term=none cterm=bold ctermfg=Yellow 
+highlight CursorLine ctermbg=none ctermfg=none
+highlight Cursor ctermbg=Yellow ctermfg=None
+autocmd InsertEnter * highlight CursorLine ctermbg=236 ctermfg=none
+autocmd InsertLeave * highlight CursorLine ctermbg=none ctermfg=None
+ 
+function CheckForBlankLine()
+	let line = getline(".")
+	if line =~ '^\s*$'
+		normal dd
+		normal k
+	elseif line=~ '^["\w]$'
+		normal dd
+		normal k
+	elseif line=~ '^[\w"]$'
+		normal dd
+		normal k
+	elseif line=~ '^[#\w]$'
+		normal dd
+		normal k
+	elseif line=~ '^[\w#]$'
+	endif
+endfunction
+
+augroup win_enter
+autocmd!
+	if minimal_mode==1
+		autocmd WinEnter * setlocal cursorline 
+		autocmd WinEnter * highlight CursorLineNr ctermfg=Yellow
+		autocmd WinEnter * setlocal number
+		autocmd WinEnter * setlocal relativenumber
+		autocmd WinEnter * highlight LineNr term=none ctermfg=DarkGrey
+		autocmd BufEnter * call CheckForBlankLine()
+	endif
+augroup END
+ 
+augroup win_leave
+		autocmd!
+		if minimal_mode==1
+			autocmd WinLeave * setlocal nocursorline
+			autocmd WinLeave * setlocal nonumber
+			autocmd WinLeave * setlocal norelativenumber
+			autocmd BufLeave * normal o 
+			autocmd BufLeave * normal C
+		endif
+augroup END
+
+"#########################################
+"# Custom Jump Navigation Mapping        #
+"#########################################
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+nnoremap zz zz<c-e><c-e><c-e><c-e><c-e><c-e><c-e><c-e>
+" nnoremap h <NOP>
+" nnoremap j <NOP>
+" nnoremap k <NOP>
+" nnoremap l <NOP>
+nnoremap ja j
+nnoremap js :+2<Cr>
+nnoremap jd :+3<Cr>
+nnoremap jf :+4<Cr>
+nnoremap jg :+5<Cr>
+nnoremap jh :+6<Cr>
+nnoremap jj :+7<Cr>
+nnoremap jk :+8<Cr>
+nnoremap jl :+9<Cr>
+nnoremap j; :+10<Cr>
+nnoremap jja :+11<Cr>
+nnoremap jjs :+12<Cr>
+nnoremap jjd :+13<Cr>
+nnoremap jjf :+14<Cr>
+nnoremap jjg :+15<Cr>
+nnoremap jjh :+16<Cr>
+nnoremap jjj :+17<Cr>
+nnoremap jjk :+18<Cr>
+nnoremap jjl :+19<Cr>
+nnoremap jj; :+20<Cr>
+nnoremap jjja :+21<Cr>
+nnoremap jjjs :+22<Cr>
+nnoremap jjjd :+23<Cr>
+nnoremap jjjf :+24<Cr>
+nnoremap jjjg :+25<Cr>
+nnoremap jjjh :+26<Cr>
+nnoremap jjjj :+27<Cr>
+nnoremap jjjk :+28<Cr>
+nnoremap jjjl :+29<Cr>
+nnoremap jjj; :+21<Cr>
+nnoremap <Leader>j  :
+nnoremap <Leader>ja k
+nnoremap <Leader>js :-2<Cr>
+nnoremap <Leader>jd :-3<Cr>
+nnoremap <Leader>jf :-4<Cr>
+nnoremap <Leader>jg :-5<Cr>
+nnoremap <Leader>jh :-6<Cr>
+nnoremap <Leader>jj :-7<Cr>
+nnoremap <Leader>jk :-8<Cr>
+nnoremap <Leader>jl :-9<Cr>
+nnoremap <Leader>j; :-10<Cr>
+nnoremap <Leader>jja :-11<Cr>
+nnoremap <Leader>jjs :-12<Cr>
+nnoremap <Leader>jjd :-13<Cr>
+nnoremap <Leader>jjf :-14<Cr>
+nnoremap <Leader>jjg :-15<Cr>
+nnoremap <Leader>jjh :-16<Cr>
+nnoremap <Leader>jjj :-17<Cr>
+nnoremap <Leader>jjk :-18<Cr>
+nnoremap <Leader>jjl :-19<Cr>
+nnoremap <Leader>jj; :-20<Cr>
+nnoremap <Leader>jjja :-21<Cr>
+nnoremap <Leader>jjjs :-22<Cr>
+nnoremap <Leader>jjjd :-23<Cr>
+nnoremap <Leader>jjjf :-24<Cr>
+nnoremap <Leader>jjjg :-25<Cr>
+nnoremap <Leader>jjjh :-26<Cr>
+nnoremap <Leader>jjjj :-27<Cr>
+nnoremap <Leader>jjjk :-28<Cr>
+nnoremap <Leader>jjjl :-29<Cr>
+nnoremap <Leader>jjj; :-30<Cr>
+
+"########################################## 
+"# Ruby on Rails specific shortcuts        #
+"########################################## 
+" nnoremap m ]m
+" nnoremap M ]M
+" nnoremap <space>m [m
+" nnoremap <Leader>M [M
+
+"########################################## 
+"# Unmappings                             #
+"########################################## 
+inoremap d d
+inoremap e e
+inoremap r r
+inoremap o o 
