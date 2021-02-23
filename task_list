@@ -1,5 +1,23 @@
-ID   STARTTIME    13Jul:0718   DONE     NAME				                             TALLY 
+ID   STARTTIME    ENDTIME      STATUS   NAME                                    TALLY 
 =======================================================================================
+23   29Jan:0809   04Feb:0030   DONE     params_generator                ###################################################
+22   28Jan:1530   29Jan:0809   DONE     models_generator      ##############################################################################
+17   11Jan:0044   15Jan:0349   DONE     facade_generator ############################ 
+18   31Dec:0031   11Jan:0042   DONE     generate_serializers #############################################
+18   16Oct:0330   16Oct:0656   DONE     campaign_permissions_bug                     
+01   14Oct:1435   16Oct:0309   DONE     dashboard_sessions_integration_tests     #########---
+21   14Oct:0014   14Oct:0524   DONE     filed_accounts_search_integration_test######
+20   13Oct:1331   13Oct:2240   DONE     filed_accounts_query_unit_tests    ##########
+19   12Oct:2228   13Oct:1330   DONE     accounts_importer                        ####
+18   12Oct:2228   13Oct:1330   DONE     xbrl_parser                        ##########
+18   12Oct:1227   12Oct:2027   DONE     csv_import_test                          ############
+17   01Oct:0248   01Oct:1222   DONE     setup_jenkins_ci                         ###########-----------------
+17   29Sep:1556   29Sep:2359   DONE     set_review_stage_config_vars         ###########
+60   29Sep:1428   29Sep:1555   DONE     move_tasks_from_vim_to_notion            ###-
+05   14Sep:1854   14Sep:1854   DONE     duplicate_new_campaign_bug               #---
+36   14Sep:1825   14Sep:1826   DONE     linkedin_task_2x_bug                     #---
+37   22Aug:1126   14Sep:1822   DONE     clear_filters_buttons                   #####
+18   22Aug:0241   22Aug:1124   DONE     task_completion_button              #########
 27   20Jul:0941   20Jul:1001   DONE     lead_gen_form_styling                    #---
 34   13Jul:2001   13Jul:2140   DONE     audience_rows_v1                         ###-
 21   13Jul:1651   13Jul:1957   DONE     campaign_sales_process_bug               ####
@@ -25,7 +43,7 @@ ID   STARTTIME    13Jul:0718   DONE     NAME				                             TAL
 15   25Jun:0251   25Jun:1327   DONE     list_nav_bug            #####################
 15   19Jun:0200   19Jun:0300   DONE     add_to_list_bug                          ##
 15   19Jun:0030   19Jun:0149   DONE     navmenu_select_helpers                   ##--
-17   09Jun:1710  #19Jun:0400   DONE     list_add_feature                     #####.####.###
+17   09Jun:1710   19Jun:0400   DONE     list_add_feature                     #####.####.###
 18   08Jun:0122   09Jun:0632   DONE     list_show_feature                        ####.----
 25   25Jun:1330   25Jun:1330   DONE     dashboard_emails_bug                     #---
 24   25Jun:1328   25Jun:1328   DONE     dashboard_calls_bug                      ###-
@@ -59,51 +77,11 @@ ID   STARTTIME    13Jul:0718   DONE     NAME				                             TAL
 03   06May:0457   09May:1228   DONE     admin_company_search            #############
 04   09May:1512   09May:2056   DONE     company_import_test                    ######
 13   09May:2331   09May:2331   DONE     search_test_fix                          #
+################################################################################################ 
+################################################################################################ 
+################################################################################################ 
 16   XXXXX:XXXX   XXXXX:XXXX   QUEUE    campaign_interaction_tests               ------------
-20   XXXXX:XXXX   XXXXX:XXXX   QUEUE    content_portal_system_tests              --------
-22   XXXXX:XXXX   XXXXX:XXXX   QUEUE    accounts_rake_task_test                  ----
-23   12May:0533   XXXXX:XXXX   START    domain_query_api                      ###############
-24   XXXXX:XXXX   XXXXX:XXXX   QUEUE    job_scraper                              ------------------
-26   13May:0414   XXXXX:XXXX   START    common_crawl_downloader                  #########
-10   XXXXX:XXXX   XXXXX:XXXX   QUEUE    salesbox_menu                            ------------
-06   XXXXX:XXXX   XXXXX:XXXX   QUEUE    new_frontend_plans                       --
-16   XXXXX:XXXX   XXXXX:XXXX   QUEUE    new_campaign_info_gaps                   ----
-17   XXXXX:XXXX   XXXXX:XXXX   QUEUE    new_cmpgn_sales_process_gaps             ----
-31   XXXXX:XXXX   XXXXX:XXXX   QUEUE    make_list_of_analysis_services           ###-
-32   XXXXX:XXXX   XXXXX:XXXX   QUEUE    BingAccountScraper                       ----
-15   XXXXX:XXXX   XXXXX:XXXX   QUEUE    sidebar_active_styling                   ----
-15   XXXXX:XXXX   XXXXX:XXXX   QUEUE    dashboard_calls_side_modal_bug           ----
-16   XXXXX:XXXX   XXXXX:XXXX   QUEUE    view_helpers_status_badges               ----
-20   XXXXX:XXXX   XXXXX:XXXX   QUEUE    campaign_info_edit                       ----
-23   XXXXX:XXXX   XXXXX:XXXX   QUEUE    audience_stats_spec                      ----
-24   XXXXX:XXXX   XXXXX:XXXX   QUEUE    email_template_stats_spec                ----
-25   XXXXX:XXXX   XXXXX:XXXX   QUEUE    email_experiments_stats_spec             ----
-26   XXXXX:XXXX   XXXXX:XXXX   QUEUE    campaign_lead_filters_spec               ----
-29   XXXXX:XXXX   XXXXX:XXXX   QUEUE    sales_data_filter_spec                   ----
-26   XXXXX:XXXX   XXXXX:XXXX   QUEUE    add_select_options_to_forms              ----
-16   XXXXX:XXXX   XXXXX:XXXX   QUEUE    list_filter_spec                         ----.----
-15   XXXXX:XXXX   XXXXX:XXXX   QUEUE    list_model_spec                          ----.----
-27   XXXXX:XXXX   XXXXX:XXXX   QUEUE    blue_tooltips_bug                        ----
-11   XXXXX:XXXX   XXXXX:XXXX   QUEUE    linkedin_icon_bug                        ----
-31   XXXXX:XXXX   XXXXX:XXXX   QUEUE    sic_code_multiselect                     ----
-12   XXXXX:XXXX   XXXXX:XXXX   QUEUE    companies_with_domain_search             ----
-28   XXXXX:XXXX   XXXXX:XXXX   QUEUE    audience_management_specs                ----
-13   XXXXX:XXXX   XXXXX:XXXX   QUEUE    comanies_with_accounts_search            ----
-24   XXXXX:XXXX   XXXXX:XXXX   QUEUE    filter_leads_spec                        ----
-#################################################################################################
-########################################## 10 BLOCK TARGET ######################################
-#################################################################################################
-20   XXXXX:XXXX   XXXXX:XXXX   QUEUE    tidy_up_demo_campaign                    ----
-35   XXXXX:XXXX   XXXXX:XXXX   QUEUE    condense_campaign_tabs                   ----
-19   XXXXX:XXXX   XXXXX:XXXX   QUEUE    campaign_audience_management             ----
-34   13Jul:1233   XXXXX:XXXX   START    filter_emails_bug                        ###-
-18   XXXXX:XXXX   XXXXX:XXXX   QUEUE    update_s3                                ----
-35   XXXXX:XXXX   XXXXX:XXXX   QUEUE    experiments_row                          ----
-36   XXXXX:XXXX   XXXXX:XXXX   QUEUE    template_row_styling                     ----
-23   XXXXX:XXXX   XXXXX:XXXX   START    filter_calls_bug                         ----
-05   XXXXX:XXXX   XXXXX:XXXX   QUEUE    duplicate_new_campaign_bug               ----
-33   XXXXX:XXXX   XXXXX:XXXX   QUEUE    front_end_will_paginate_update           ----
-35   XXXXX:XXXX   XXXXX:XXXX   QUEUE    audience_rows_v2                         ----
-36   XXXXX:XXXX   XXXXX:XXXX   QUEUE    linkedin_task_2x_bug                     ----
-37   XXXXX:XXXX   XXXXX:XXXX   QUEUE    clear_filters_buttons                    ----
-18   20Jul:1015   XXXXX:XXXX   START    task_completion_button                   ####
+20   XXXXX:XXXX   XXXXX:XXXX   QUEUE    migrations_generator                     ------
+21   15Jan:0350   XXXXX:XXXX   START    form_specs_generator                     ####
+22   09Feb:1240   XXXXX:XXXX   START    task_generator                           #####################################
+23   23Feb:1435   XXXXX:XXXX   START    test_microservice_deploy                 ##--

@@ -1,0 +1,3 @@
+[submodule "submodules/bundle/vim-easygrep"]
+	path = submodules/bundle/vim-easygrep
+	url = https://github.com/dkprice/vim-easygrep

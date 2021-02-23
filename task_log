@@ -1,5 +1,4 @@
 DATE           HOURS      POMS                          COMPLETED TASKS                      
-
 ============================================================================
 Fri-01May2020  0947-1053  ----                          #vim_timer   
 Mon-04May2020  1100-0205  --.----.----.-----            #pomodoro_status_line #task_manager_add #pause_bug #long_break_bug task_manager_done #pom_restart #task_record_pom 
@@ -57,3 +56,41 @@ Sat-11Jul2020  1740-2059
 Sun-12Jul2020  2059-1555  ----.----.----.----  #content_portal_show_modal #linkedin_task_show_modal #button_styling #filter_leads_mvp #campaign_index_card_stats
 Mon-13Jul2020  1555-2159  ----.----.----.----  #email_decorator #add_demo_to_empty_dashboard #campaign_overview_stat_boxes #campaign_sales_process_bug #audience_rows 
 Mon-20Jul2020  0930-1425  #--   
+Sat-22Aug2020  0241-XXXX  ----.----  #task_completion_button #task_completion_button # #clear_filters_button #clear_filters_buttons #linkedin_task_2x_bug # #duplicate_new_campaign_bug 
+Mon-14Sep2020  1855-1906  #duplicate_campaign_creation_bug, #duplicate_linkedin_task_bug, #search_filter_reset.
+Thu-17Sep2020  2325-XXXX  --   
+Thu-24Sep2020  0710-XXXX  ----.----.----   
+Tue-29Sep2020  1223-0356  ----.-----.----.---  #move_tasks_from_vim_to_notion #set_review_stage_config_vars # 
+Wed-30Sep2020  0718-0247  ----.--
+Thu-01Oct2020  0247-XXXX  ----.-  #setup_jenkins_ci 
+Mon-12Oct2020  1738-1329  ----.----.----.----.--  #csv_import_test #xbrl_parser 
+Tue-13Oct2020  1329-0524  ----.----.----.----.---  #filed_accounts_query_unit_tests #filed_accounts_search_integration_test 
+Wed-14Oct2020  1121-XXXX  ----.---   
+Thu-15Oct2020  2202-0656  ----.----.----  #dashboard_sessions_integration_tests #campaign_permissions_bug 
+Fri-16Oct2020  0844-XXXX    
+Fri-16Oct2020  1627-XXXX    
+Sat-26Dec2020  0543-0038  ---- 
+Mon-28Dec2020  0038-XXXX  ----.-----.----.---   
+Mon-28Dec2020  2301-1406  ----.----.----.----.--   
+Tue-29Dec2020  1650-0800  ----.----.-----.----.----.----.----
+Wed-30Dec2020  1628-XXXX  ----.----.---.------.----.--.----..-----.-  #generate_serializers 
+Mon-04Jan2021  0259-XXXX  ---.----.----.----.----.----.----.----.----.-   
+Sun-10Jan2021  0202-0041  ----.----.----.----.----.----.--  #generate_serializers 
+Mon-11Jan2021  0043-XXXX  ----.----
+Fri-15Jan2021  0349-XXXX  ----   
+Thu-21Jan2021  0947-0357  ----.----.----.----.----.----.----.----.----.----.----.----   
+Thu-28Jan2021  1529-XXXX  ----.----.----.----.----.----.----.----.----.----.----.----.--  #models_generator 
+Tue-02Feb2021  1743-XXXX  -.----.----.----.----.----.----.----.----.-  #params_generator 
+Mon-08Feb2021  1244-0533  ----.----.----.-----  #generate_repositories 
+Tue-09Feb2021  1240-XXXX  -----.----.----.----.----.----.----.---   
+Thu-11Feb2021  1838-XXXX  ----.----.----.   
+Fri-12Feb2021  XXXX-XXXX    
+Mon-15Feb2021  XXXX-XXXX    
+Tue-16Feb2021  XXXX-XXXX    
+Wed-17Feb2021  XXXX-XXXX  ---   
+Thu-18Feb2021  XXXX-XXXX    
+Fri-19Feb2021  XXXX-XXXX  --   
+Sat-20Feb2021  XXXX-XXXX  ----   
+Sun-21Feb2021  1300-XXXX  ----.----.--
+Mon-22Feb2021  1116-XXXX    
+Tue-23Feb2021  0926-XXXX  --   
