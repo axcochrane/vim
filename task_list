@@ -1,5 +1,6 @@
 ID   STARTTIME    ENDTIME      STATUS   NAME                                    TALLY 
 =======================================================================================
+24   23Feb:1129   25Feb:0949   DONE     api_gem_deploy                           ####################################
 23   29Jan:0809   04Feb:0030   DONE     params_generator                ###################################################
 22   28Jan:1530   29Jan:0809   DONE     models_generator      ##############################################################################
 17   11Jan:0044   15Jan:0349   DONE     facade_generator ############################ 
@@ -84,4 +85,4 @@ ID   STARTTIME    ENDTIME      STATUS   NAME                                    
 20   XXXXX:XXXX   XXXXX:XXXX   QUEUE    migrations_generator                     ------
 21   15Jan:0350   XXXXX:XXXX   START    form_specs_generator                     ####
 22   09Feb:1240   XXXXX:XXXX   START    task_generator                           #####################################
-23   23Feb:1435   XXXXX:XXXX   START    test_microservice_deploy                 ##--
+23   23Feb:1435   XXXXX:XXXX   START    test_microservice_deploy           ########################
