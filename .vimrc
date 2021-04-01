@@ -50,6 +50,15 @@ call vundle#begin()
 	Plugin 'christoomey/vim-rfactory'	 " Enables RFactory shortcuts to access Rails Factory objects
 	Plugin 'dkprice/vim-easygrep'
 	Plugin 'triglav/vim-visual-increment'
+	Plugin 'styled-components/vim-styled-components', { 'branch': 'main' }
+	Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+	Plugin 'yuezk/vim-js'
+	Plugin 'maxmellon/vim-jsx-pretty'
+	Plugin 'HerringtonDarkholme/yats.vim'
+  Plugin 'leafgarland/typescript-vim'
+	let g:coc_global_extensions = [
+  \ 'coc-tsserver'
+  \ ]
 call vundle#end()										 " required
 filetype plugin indent on						 " required
 
@@ -93,7 +102,7 @@ set splitright
 "  Basic Appearance Settings						  
 "===================================== 
 syntax on             " Enable syntax highlighting
-colorscheme monokai
+colorscheme molokai
 " colorscheme zenburn
 set relativenumber
 set lazyredraw  
