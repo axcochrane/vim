@@ -25,39 +25,41 @@ set nocompatible
 "===================================== 
 " Vundle Plugins        								  
 "===================================== 
-call plug#begin('~/.vim/plugged')
-	Plug 'ryanoasis/vim-devicons'
-	Plug 'gmarik/Vundle.vim'
-	Plug 'tpope/vim-rails'
-	Plug 'vim-ruby/vim-ruby'
-	Plug 'tpope/vim-surround'
-	Plug 'tpope/vim-commentary'
-	Plug 'townk/vim-autoclose'
-	Plug 'MarcWeber/vim-addon-mw-utils'
-	Plug 'junegunn/fzf'
-	Plug 'junegunn/fzf.vim'
-	Plug 'thoughtbot/vim-rspec'
-	Plug 'mileszs/ack.vim'
-	Plug 'tpope/vim-repeat'
-	Plug 'tpope/vim-abolish'
-	Plug 'simeji/winresizer'
-	Plug 'preservim/nerdtree'
-	Plug 'dbakker/vim-projectroot'
-	Plug 'rainerborene/vim-reek'
-	Plug 'justinmk/vim-sneak'
-	Plug 'tomtom/tlib_vim'
-	Plug 'tpope/vim-fugitive'
-	Plug 'tpope/vim-endwise'         " enables autocompletion of
-	Plug 'christoomey/vim-rfactory'	 " Enables RFactory shortcuts to access Rails Factory objects
-	Plug 'dkprice/vim-easygrep'
-	Plug 'triglav/vim-visual-increment'
-	Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-	Plug 'yuezk/vim-js'
-	Plug 'maxmellon/vim-jsx-pretty'
-	Plug 'HerringtonDarkholme/yats.vim'
-  Plug 'leafgarland/typescript-vim'
-	Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-call plug#end()										 " required
+call vundle#begin()
+	Plugin 'gmarik/Vundle.vim'
+	Plugin 'tpope/vim-rails'
+	Plugin 'vim-ruby/vim-ruby'
+	Plugin 'tpope/vim-surround'
+	Plugin 'tpope/vim-commentary'
+	Plugin 'townk/vim-autoclose'
+	Plugin 'MarcWeber/vim-addon-mw-utils'
+	Plugin 'junegunn/fzf'
+	Plugin 'junegunn/fzf.vim'
+	Plugin 'thoughtbot/vim-rspec'
+	Plugin 'mileszs/ack.vim'
+	Plugin 'tpope/vim-repeat'
+	Plugin 'tpope/vim-abolish'
+	Plugin 'simeji/winresizer'
+	Plugin 'preservim/nerdtree'
+	Plugin 'dbakker/vim-projectroot'
+	Plugin 'rainerborene/vim-reek'
+	Plugin 'justinmk/vim-sneak'
+	Plugin 'tomtom/tlib_vim'
+	Plugin 'tpope/vim-fugitive'
+	Plugin 'tpope/vim-endwise'         " enables autocompletion of
+	Plugin 'christoomey/vim-rfactory'	 " Enables RFactory shortcuts to access Rails Factory objects
+	Plugin 'dkprice/vim-easygrep'
+	Plugin 'triglav/vim-visual-increment'
+	Plugin 'styled-components/vim-styled-components', { 'branch': 'main' }
+	Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+	Plugin 'yuezk/vim-js'
+	Plugin 'maxmellon/vim-jsx-pretty'
+	Plugin 'HerringtonDarkholme/yats.vim'
+  Plugin 'leafgarland/typescript-vim'
+	let g:coc_global_extensions = [
+  \ 'coc-tsserver'
+  \ ]
+call vundle#end()										 " required
 filetype plugin indent on						 " required
 
  
@@ -1063,6 +1065,12 @@ function TaskCount(...)
 		let line_no = search('QUEUE')
 		:execute "normal! VG:s/-/-/gn"
 endfunction
+"==========================================
+" Function to run on Load
+"==========================================
+" :call ToggleHiddenAll()
+" :call ToggleHiddenAll()
+:call StatusLineDefault()
 
 "==========================================
 " Navigating to next braces
@@ -1072,107 +1080,3 @@ noremap )) <esc>/)<cr>
 noremap }} <esc>/}<cr>
 noremap }} <esc>/}<cr>
 
-"==========================================
-" Typescript CoC extensions
-"==========================================
-let g:coc_global_extensions = [
-  \ 'coc-snippets',
-  \ 'coc-pairs',
-  \ 'coc-tsserver',
-  \ 'coc-eslint',
-  \ 'coc-prettier',
-  \ 'coc-json',
-  \ ]
-
-if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
-  let g:coc_global_extensions += ['coc-prettier']
-endif
-
-if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
-  let g:coc_global_extensions += ['coc-eslint']
-endif
-
-autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
-autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
-
-" Use K to show documentation in preview window
-nnoremap <tab> :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" sync open file with NERDTree
-" " Check if NERDTree is open or active
-" function! IsNERDTreeOpen()        
-"   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-" endfunction
-
-" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
-" file, and we're not in vimdiff
-" function! SyncTree()
-"   if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-"     NERDTreeFind
-"     wincmd p
-"   endif
-" endfunction
-
-" Highlight currently open buffer in NERDTree
-" autocmd BufEnter * call SyncTree()
-
-let g:NERDTreeGitStatusWithFlags = 1
-
-" coc config
-" Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Using CocList
-" Show all diagnostics
-" nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" " Manage extensions
-" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" " Show commands
-" nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" " Find symbol of current document
-" nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" " Search workspace symbols
-" nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" " Do default action for next item.
-" nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" " Do default action for previous item.
-" nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" " Resume latest coc list
-" nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-"
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <leader>rn <Plug>(coc-rename)
-nmap <leader>do <Plug>(coc-codeaction)
-
-"==========================================
-" Function to run on Load
-"==========================================
-" :call ToggleHiddenAll()
-" :call ToggleHiddenAll()
-:call StatusLineDefault()
-
-" let g:SuperTabClosePreviewOnPopupClose = 1
-
-
-"==========================================
-" Typescript code generation snippets
-"==========================================
-nnoremap ,func <Esc>:-1read $HOME/.vim/snippets/js_function_snippet.html<CR>
-
-" Make <TAB> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR><Esc>"
-
-" set completeopt-=preview

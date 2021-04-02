@@ -2,6 +2,7 @@
   "codeLens.enable": true,
   "coc.preferences.extensionUpdateCheck": "daily",
   "coc.preferences.formatOnType": true,
+  "hover.target": "float",
   "coc.preferences.willSaveHandlerTimeout": 1000,
   "coc.preferences.formatOnSaveFiletypes": [
     "c",
@@ -15,14 +16,14 @@
   ],
   "coc.source.around.firstMatch": false,
   "coc.source.file.ignoreHidden": false,
-  "clangd.arguments": [
-    "--query-driver=/usr/bin/clang++",
-    "--background-index"
-  ],
+  "clangd.arguments": ["--query-driver=/usr/bin/clang++", "--background-index"],
+  "tsserver.formatOnType": true,
   "diagnostic.format": "%message [%source]",
   "diagnostic.virtualText": true,
   "diagnostic.checkCurrentLine": true,
   "diagnostic.separateRelatedInformationAsDiagnostics": true,
+  "eslint.enable": true,
+  "tsserver.enable": true,
   "eslint.autoFixOnSave": true,
   "eslint.format.enable": true,
   "eslint.packageManager": "yarn",
@@ -55,12 +56,8 @@
   "snippets.ultisnips.enable": false,
   "snippets.ultisnips.usePythonx": false,
   "snippets.extends": {
-    "javascriptreact": [
-      "javascript"
-    ],
-    "typescript": [
-      "javascript"
-    ]
+    "javascriptreact": ["javascript"],
+    "typescript": ["javascript"]
   },
   "typescript.format.semicolons": "insert",
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
@@ -110,4 +107,3 @@
     /* } */
   }
 }
-
