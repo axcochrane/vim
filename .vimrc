@@ -26,8 +26,7 @@ set nocompatible
 " Vundle Plugins        								  
 "===================================== 
 call plug#begin('~/.vim/plugged')
-	Plug 'ryanoasis/vim-devicons'
-	Plug 'gmarik/Vundle.vim'
+	Plug 'junegunn/vim-peekaboo'
 	Plug 'tpope/vim-rails'
 	Plug 'vim-ruby/vim-ruby'
 	Plug 'tpope/vim-surround'
@@ -58,7 +57,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'leafgarland/typescript-vim'
 	Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 call plug#end()										 " required
-filetype plugin indent on						 " required
 
  
 "===================================== 
@@ -157,7 +155,7 @@ noremap <leader>r :! cd ~/Enlist_rails && spring rspec %:p -f d <Cr>
 noremap <leader>p :ProjectRootCD<Cr>:FZF<Cr>
 
 " Run using double :: as leader key
-cnoremap :source :source ~/.vimrc<Cr>
+cnoremap :source :silent! source ~/.vimrc<Cr>
 cnoremap :bar call StatusLineCycle()<Cr>
 cnoremap :info <esc><S-k>
 cnoremap :min0 let w:minimal_mode = 0<Cr>
@@ -169,7 +167,7 @@ cnoremap :trim :call TrimSpaces()<Cr>
 cnoremap :search Ack -i   ~/enlist_rails <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
 
-nnoremap <leader><leader>source :source ~/.vimrc<Cr>
+nnoremap <leader><leader>source :silent! source ~/.vimrc<Cr>
 nnoremap <leader><leader>bar :call StatusLineCycle()<Cr>
 nnoremap <leader><leader>info <esc><S-k>
 nnoremap <leader><leader>nums :set nu rnu<Cr>
@@ -232,10 +230,10 @@ nnoremap f{{ <Esc>/{<CR>vi{
 "==========================================
 " Rails Text Delimeter Shortcuts
 "==========================================
-inoremap [[ ()<left>
-inoremap ]] {}<left>
-inoremap -- <%=  %><left><left><left>
-inoremap "" "#{}"<left><left>
+" inoremap [[ ()<left>
+" inoremap ]] {}<left>
+" inoremap -- <%=  %><left><left><left>
+" inoremap "" "#{}"<left><left>
 nnoremap <leader><leader>m m
 
 "==========================================
@@ -1071,7 +1069,8 @@ nnoremap ]] <Esc>/]<CR>
 noremap )) <esc>/)<cr>
 noremap }} <esc>/}<cr>
 noremap }} <esc>/}<cr>
-
+noremap <leader>dib /{<cr>diBi<space><space><left>
+noremap <leader>dab /(<cr>dib
 "==========================================
 " Typescript CoC extensions
 "==========================================
@@ -1092,7 +1091,7 @@ if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
 endif
 
-autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufEnter *.{} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 " Use K to show documentation in preview window
@@ -1159,7 +1158,6 @@ nmap <leader>do <Plug>(coc-codeaction)
 " Function to run on Load
 "==========================================
 " :call ToggleHiddenAll()
-" :call ToggleHiddenAll()
 :call StatusLineDefault()
 
 " let g:SuperTabClosePreviewOnPopupClose = 1
@@ -1176,3 +1174,6 @@ inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR><Esc>"
 
 " set completeopt-=preview
+" List contents of all registers (that typically contain pasteable text).
+nnoremap <silent> "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
+
