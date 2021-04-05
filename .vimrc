@@ -9,7 +9,6 @@
 "===================================== 
 "  Vim Dependencies and Required paths     
 "===================================== 
-set rtp+=~/.vim/bundle/Vundle.vim 
 set rtp+=/usr/local/opt/fzf 
 filetype on 
 filetype plugin on
@@ -25,7 +24,7 @@ set nocompatible
 "===================================== 
 " Vundle Plugins        								  
 "===================================== 
-call plug#begin('~/.vim/plugged')
+call plug#begin()
 	Plug 'junegunn/vim-peekaboo'
 	Plug 'tpope/vim-rails'
 	Plug 'vim-ruby/vim-ruby'
@@ -55,7 +54,6 @@ call plug#begin('~/.vim/plugged')
 	Plug 'maxmellon/vim-jsx-pretty'
 	Plug 'HerringtonDarkholme/yats.vim'
   Plug 'leafgarland/typescript-vim'
-	Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 call plug#end()										 " required
 
  
@@ -603,6 +601,7 @@ augroup END
  
 augroup win_leave
 	autocmd!
+		autocmd BufLeave * call CheckWindowDefaults()
 		autocmd BufLeave * call HideNumbers() 
 		autocmd BufLeave * call SetNoWrap() 
 		autocmd WinLeave * call SetNoCursorLine() 
@@ -1069,8 +1068,10 @@ nnoremap ]] <Esc>/]<CR>
 noremap )) <esc>/)<cr>
 noremap }} <esc>/}<cr>
 noremap }} <esc>/}<cr>
-noremap <leader>dib /{<cr>diBi<space><space><left>
-noremap <leader>dab /(<cr>dib
+noremap <leader>cir /{<cr>ciB<space><space><left>
+noremap <leader>cib /(<cr>cib
+noremap <leader>ciq /"<cr>ci"
+noremap <leader>cis /'<cr>ci'
 "==========================================
 " Typescript CoC extensions
 "==========================================
@@ -1147,10 +1148,10 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " " Resume latest coc list
 " nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 "
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> <leader>gd <Plug>(coc-definition)
+nmap <silent> <leader>gy <Plug>(coc-type-definition)
+nmap <silent> <leader>gr <Plug>(coc-references)
+nmap <silent> <leader>gi <Plug>(coc-implementation)
 nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>do <Plug>(coc-codeaction)
 
