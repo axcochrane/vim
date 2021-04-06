@@ -9,7 +9,6 @@
 "===================================== 
 "  Vim Dependencies and Required paths     
 "===================================== 
-set rtp+=/usr/local/opt/fzf 
 filetype on 
 filetype plugin on
 filetype indent on
@@ -17,14 +16,37 @@ set path+=**
 set noreadonly
 set autochdir
 set nocompatible 
-" persists g:CAPITAILISED global variables across sessions in .viminfo
-:set viminfo+=!
+:set viminfo+=! " persists g:CAPITAILISED global variables across sessions in .viminfo
+set rtp+=/usr/local/opt/fzf 
+set noswapfile
+set undodir=~/.vim/undodir
+set undofile
+set scrolloff=8
+set signcolumn=yes
+set shortmess+=c
+set updatetime=50
 
+"=====================================
+" Tab and alignment settings     								  
+"===================================== 
+set autoindent
+set tabstop=2 "This changes how big tab spaces appear"
+set softtabstop=2
+set shiftwidth=2 "This controls the width of >> shortcut"
+set numberwidth=4
+set laststatus=2
+set notitle
+set number
+set tags=./tags;
+set nowrap
+set wrap
+set splitright
 
 "===================================== 
 " Vundle Plugins        								  
 "===================================== 
 call plug#begin()
+	Plug 'tree-sitter/tree-sitter'
 	Plug 'junegunn/vim-peekaboo'
 	Plug 'tpope/vim-rails'
 	Plug 'vim-ruby/vim-ruby'
@@ -54,54 +76,86 @@ call plug#begin()
 	Plug 'maxmellon/vim-jsx-pretty'
 	Plug 'HerringtonDarkholme/yats.vim'
   Plug 'leafgarland/typescript-vim'
-call plug#end()										 " required
-
+call plug#end()
  
 "===================================== 
-" Vim Snippets and Autocomplete					  
-"===================================== 
-" we will use the inbuld Vim autocomplete tools <c-x> <c-n> 
-" FYI this has been mapped to <cr><cr> see utilities for more info
-
-	
-"===================================== 
-" Common Shortcut Setings								  
+" Important Leader Settings
 "===================================== 
 let mapleader = "\<Space>"
+nnoremap <leader><leader> :
 set timeoutlen=700 ttimeoutlen=-1
 nnoremap S :w!<Cr>
 nnoremap Q @@
-nnoremap <leader><leader> :
 
-
-
-"=====================================
-" Tab and alignment settings     								  
 "===================================== 
-set autoindent
-set tabstop=2 "This changes how big tab spaces appear"
-set softtabstop=2
-set shiftwidth=2 "This controls the width of >> shortcut"
-set numberwidth=4
-set laststatus=2
-set notitle
-set number
-set tags=./tags;
-"set nowrap
-set wrap
-set splitright
-
- 
+" Basic Appearance Settings						  
 "===================================== 
-"  Basic Appearance Settings						  
-"===================================== 
-syntax on             " Enable syntax highlighting
 colorscheme monokai
 " colorscheme zenburn
+syntax on
 set relativenumber
 set lazyredraw  
 set hidden
 
+"===================================== 
+" Inserting & Deleteing Shorcuts  								  
+"===================================== 
+set bs=2
+nnoremap ,, A<Esc>  
+inoremap ,, <Esc>wa
+nnoremap <Leader>o o<Esc>
+nnoremap Dle ld$
+nnoremap dle d$
+nnoremap dls 2dd
+nnoremap dld 3dd
+nnoremap dlf 4dd
+nnoremap dlg 5dd
+nnoremap dlh 6dd
+nnoremap dlj 7dd
+nnoremap dlk 8dd
+nnoremap dll 9dd
+nnoremap dla 10dd
+nnoremap dlaa 11dd
+nnoremap dlas 12dd
+nnoremap dlad 13dd
+nnoremap dlaf 14dd
+nnoremap dlag 15dd
+nnoremap dlah 16dd
+nnoremap dlaj 17dd
+nnoremap dlak 18dd
+nnoremap dlal 19dd
+nnoremap dla; 20dd
+nnoremap dlsa 21dd
+nnoremap dlss 22dd
+nnoremap dlsd 23dd
+nnoremap dlsf 24dd
+nnoremap dlsg 25dd
+nnoremap dlsh 26dd
+nnoremap dlsj 27dd
+nnoremap dlsk 28dd
+nnoremap dlsl 29dd
+
+nnoremap Cle lc$
+nnoremap cle c$
+nnoremap cls 2cc
+nnoremap cld 3cc
+nnoremap clf 4cc
+nnoremap clg 5cc
+nnoremap clh 6cc
+nnoremap clj 7cc
+nnoremap clk 8cc
+nnoremap cll 9cc
+nnoremap cla 10cc
+nnoremap claa 11cc
+nnoremap clas 12cc
+nnoremap clad 13cc
+nnoremap claf 14cc
+nnoremap clag 15cc
+nnoremap clah 16cc
+nnoremap claj 17cc
+nnoremap clak 18cc
+nnoremap clal 19cc
+ 
 
 "===================================== 
 "  Navigation Shortcuts  								  
@@ -110,61 +164,30 @@ nnoremap <c-J> <C-W><C-J>
 nnoremap <c-K> <C-W><C-K>
 nnoremap <c-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-nnoremap K 5k5<c-y>
-nnoremap J 5j5<c-e>
+nnoremap K 8k8<c-y>
+nnoremap J 8j8<c-e>
 nnoremap <leader>q q
+nnoremap <leader><leader>m m
 nnoremap q b
 
-
 "===================================== 
-"  Editing Shorcuts  								  
+" Search and Sneak Plugin Shortcut                   
 "===================================== 
-nnoremap <Leader>o o<Esc>
-set bs=2														 " Enable Backspace key as delete
-nnoremap ,, A <Esc>
-inoremap ,, <Esc>Ea
-inoremap <CR><CR> <c-x><c-n> 
-nmap m ]m
-nmap M [m
-
-
-"===================================== 
-"  Sneak Plugin Shortcut                   
-"===================================== 
-" 2-character Sneaka (default)
+nnoremap <leader>p :ProjectRootCD<Cr>:FZF<Cr>
 map s <Plug>Sneak_s
-map <Leader>s <Plug>Sneak_S
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
-" visual-mode
 xmap s <Plug>Sneak_s
+map <Leader>s <Plug>Sneak_S
 xmap <Leader>S <Plug>Sneak_S
-xmap t <Plug>Sneak_t
 set ignorecase
 set incsearch
 let g:sneak#reset=0
 let g:sneak#use_ic_scs = 1
-
+set nohlsearch
+nnoremap <leader><leader>p "_dP
 
 "===================================== 
-"  Utilities Shortcuts  								  
+" Custom Short Command Line Settings  								  
 "===================================== 
-noremap <leader>r :! cd ~/Enlist_rails && spring rspec %:p -f d <Cr>
-noremap <leader>p :ProjectRootCD<Cr>:FZF<Cr>
-
-" Run using double :: as leader key
-cnoremap :source :silent! source ~/.vimrc<Cr>
-cnoremap :bar call StatusLineCycle()<Cr>
-cnoremap :info <esc><S-k>
-cnoremap :min0 let w:minimal_mode = 0<Cr>
-cnoremap :min1 let w:minimal_mode = 1<Cr>
-cnoremap :acc call Accordion()<Cr>
-cnoremap :reek :RunReek<Cr>
-cnoremap :show :call ShowSpaces()<Cr>
-cnoremap :trim :call TrimSpaces()<Cr>
-cnoremap :search Ack -i   ~/enlist_rails <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
-
-
 nnoremap <leader><leader>source :silent! source ~/.vimrc<Cr>
 nnoremap <leader><leader>bar :call StatusLineCycle()<Cr>
 nnoremap <leader><leader>info <esc><S-k>
@@ -189,7 +212,6 @@ nnoremap <leader><leader>trim :call TrimSpaces()<Cr>
 nnoremap <leader><leader>search :Ack -i   ~/enlist_rails <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 vnoremap <leader><leader> :s//g<left><left>
 
-
 "==========================================
 " Custom RSpec Block Snippets
 "==========================================
@@ -205,34 +227,6 @@ inoremap ,factory <Esc>:-1read $HOME/.vim/snippets/factory_snippet.html<CR>
 nnoremap ,factory <Esc>:-1read $HOME/.vim/snippets/factory_snippet.html<CR>
 inoremap ,req require ''<left>
 nnoremap ,req irequire ''<left>
-
-
-"==========================================
-" Highlight inbetween parens
-"==========================================
-inoremap f'' <Esc>/''<CR>a 
-nnoremap f'' <Esc>/''<CR>a
-inoremap f]] <Esc>/]<CR>vi]
-nnoremap f]] <Esc>/]<CR>vi]
-inoremap f)) <esc>/)<cr>vi)
-noremap f)) <esc>/)<cr>vi)
-inoremap f}} <esc>/}<cr>vi}
-noremap f}} <esc>/}<cr>vin}
-noremap f[[ <esc>/[<cr>vi[
-noremap f[[ <esc>/[<cr>vi]
-noremap f(( <Esc>/(<CR>vi(
-noremap f(( <Esc>/(<CR>vi(
-noremap f{{ <Esc>/{<CR>vi{
-nnoremap f{{ <Esc>/{<CR>vi{
-
-"==========================================
-" Rails Text Delimeter Shortcuts
-"==========================================
-" inoremap [[ ()<left>
-" inoremap ]] {}<left>
-" inoremap -- <%=  %><left><left><left>
-" inoremap "" "#{}"<left><left>
-nnoremap <leader><leader>m m
 
 "==========================================
 " RSpec Custom Block Snippets
@@ -321,7 +315,6 @@ function! Accordion(...)
 	endif
 endfunction
 
-
 "========================================
 "  TrimSpace command line function       
 "========================================
@@ -341,7 +334,6 @@ function TrimSpaces() range
 	execute a:firstline.",".a:lastline."substitute ///gec"
 	let &hlsearch=oldhlsearch
 endfunction
-
 
 "========================================
 "  NERDTree Settings                     
@@ -488,7 +480,6 @@ function MyTabLine()
 endfunction
 
 " Now the MyTabLabel() function is called for each tab page to get its label. >
-
 function MyTabLabel(n)
 	let buflist = tabpagebuflist(a:n)
 	let winnr = tabpagewinnr(a:n)
@@ -496,6 +487,8 @@ function MyTabLabel(n)
 endfunction
 
 :set tabline=%!MyTabLine()
+:call StatusLineDefault()
+
 "========================================
 "  Minimal Mode                          
 "========================================
@@ -616,7 +609,6 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
-nnoremap <leader>a<leader> j
 nnoremap <leader>s<leader> :+2<Cr>
 nnoremap <leader>d<leader> :+3<Cr>
 nnoremap <leader>f<leader> :+4<Cr>
@@ -625,7 +617,7 @@ nnoremap <leader>h<leader> :+6<Cr>
 nnoremap <leader>j<leader> :+7<Cr>
 nnoremap <leader>k<leader> :+8<Cr>
 nnoremap <leader>l<leader> :+9<Cr>
-nnoremap <leader>;<leader> :+10<Cr>
+nnoremap <leader>a<leader> :+10<Cr>
 nnoremap <leader>a;<leader> :+10<Cr>
 nnoremap <leader>aa<leader> :+11<Cr>
 nnoremap <leader>as<leader> :+12<Cr>
@@ -647,7 +639,6 @@ nnoremap <leader>sj<leader> :+27<Cr>zz<c-e><c-e><c-e><c-e>
 nnoremap <leader>sk<leader> :+28<Cr>zz<c-e><c-e><c-e><c-e>
 nnoremap <leader>sl<leader> :+29<Cr>zz<c-e><c-e><c-e><c-e>
 nnoremap <leader>d;<leader> :+30<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader><leader>a k
 nnoremap <leader><leader>s<leader> :-2<Cr>
 nnoremap <leader><leader>d<leader> :-3<Cr>
 nnoremap <leader><leader>f<leader> :-4<Cr>
@@ -656,6 +647,7 @@ nnoremap <leader><leader>h<leader> :-6<Cr>
 nnoremap <leader><leader>j<leader> :-7<Cr>
 nnoremap <leader><leader>k<leader> :-8<Cr>
 nnoremap <leader><leader>l<leader> :-9<Cr>
+nnoremap <leader><leader>a<leader> :-10<Cr>
 nnoremap <leader><leader>;<leader> :-10<Cr>
 nnoremap <leader><leader>a;<leader> :-10<Cr>
 nnoremap <leader><leader>aa<leader> :-11<Cr>
@@ -961,9 +953,6 @@ endfunction
 "===================================== 
 " Task Manager							  
 "===================================== 
-"### Public API ###
-" taska
-" taskd
 
 "### Public Functions: Task Manager ###
 function TaskAdd(...)
@@ -1064,14 +1053,11 @@ endfunction
 "==========================================
 " Navigating to next braces
 "==========================================
-nnoremap ]] <Esc>/]<CR>
-noremap )) <esc>/)<cr>
-noremap }} <esc>/}<cr>
-noremap }} <esc>/}<cr>
-noremap <leader>cir /{<cr>ciB<space><space><left>
-noremap <leader>cib /(<cr>cib
-noremap <leader>ciq /"<cr>ci"
-noremap <leader>cis /'<cr>ci'
+noremap <leader>cic /{*}<cr>ciB<space><space><left>
+noremap <leader>cib /(*)<cr>cib
+noremap <leader>ciq /"*"<cr>ci"
+noremap <leader>cis /'*'<cr>ci'
+
 "==========================================
 " Typescript CoC extensions
 "==========================================
@@ -1082,6 +1068,14 @@ let g:coc_global_extensions = [
   \ 'coc-eslint',
   \ 'coc-prettier',
   \ 'coc-json',
+  \ 'coc-action',
+  \ 'coc-docker',
+  \ 'coc-highlight',
+  \ 'coc-marketplace',
+  \ 'coc-sh',
+  \ 'coc-sql',
+  \ 'coc-tabnine',
+  \ 'coc-yaml',
   \ ]
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
@@ -1097,84 +1091,35 @@ autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 " Use K to show documentation in preview window
 nnoremap <tab> :call <SID>show_documentation()<CR>
-
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
+		echo 'nothing to see here'
   else
     call CocAction('doHover')
   endif
 endfunction
 
-" sync open file with NERDTree
-" " Check if NERDTree is open or active
-" function! IsNERDTreeOpen()        
-"   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-" endfunction
-
-" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
-" file, and we're not in vimdiff
-" function! SyncTree()
-"   if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-"     NERDTreeFind
-"     wincmd p
-"   endif
-" endfunction
-
-" Highlight currently open buffer in NERDTree
-" autocmd BufEnter * call SyncTree()
-
-let g:NERDTreeGitStatusWithFlags = 1
-
-" coc config
-" Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Using CocList
-" Show all diagnostics
-" nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" " Manage extensions
-" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" " Show commands
-" nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" " Find symbol of current document
-" nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" " Search workspace symbols
-" nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" " Do default action for next item.
-" nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" " Do default action for previous item.
-" nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" " Resume latest coc list
-" nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-"
+inoremap <esc> <esc><esc>
+nnoremap <esc> <esc><esc>
 nmap <silent> <leader>gd <Plug>(coc-definition)
 nmap <silent> <leader>gy <Plug>(coc-type-definition)
 nmap <silent> <leader>gr <Plug>(coc-references)
 nmap <silent> <leader>gi <Plug>(coc-implementation)
 nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>do <Plug>(coc-codeaction)
-
-"==========================================
-" Function to run on Load
-"==========================================
-" :call ToggleHiddenAll()
-:call StatusLineDefault()
-
-" let g:SuperTabClosePreviewOnPopupClose = 1
+nmap <leader>diag :CocDiagnostic<Cr>
+nmap <leader><leader>diag :CocDiagnostic<Cr>
 
 
 "==========================================
 " Typescript code generation snippets
 "==========================================
 nnoremap ,func <Esc>:-1read $HOME/.vim/snippets/js_function_snippet.html<CR>
-
 " Make <TAB> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm()
+inoremap <silent><expr> <Cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR><Esc>"
 
-" set completeopt-=preview
 " List contents of all registers (that typically contain pasteable text).
 nnoremap <silent> "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
 

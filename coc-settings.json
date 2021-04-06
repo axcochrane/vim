@@ -1,6 +1,7 @@
 {
   "tsserver.formatOnType": true,
   "coc.preferences.formatOnType": true,
+  "coc.preferences.snippets.enable": true,
   "suggest.noselect": false,
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
