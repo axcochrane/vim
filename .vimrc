@@ -22,7 +22,6 @@ set noswapfile
 set undodir=~/.vim/undodir
 set undofile
 set scrolloff=8
-set signcolumn=yes
 set shortmess+=c
 set updatetime=50
 
@@ -98,7 +97,7 @@ set lazyredraw
 set hidden
 
 "===================================== 
-" Inserting & Deleteing Shorcuts  								  
+" Cutting & Pasting
 "===================================== 
 set bs=2
 nnoremap ,, A<Esc>  
@@ -155,25 +154,140 @@ nnoremap clah 16cc
 nnoremap claj 17cc
 nnoremap clak 18cc
 nnoremap clal 19cc
+nnoremap cla; 20cc
+nnoremap clsa 21cc
+nnoremap clss 22cc
+nnoremap clsd 23cc
+nnoremap clsf 24cc
+nnoremap clsg 25cc
+nnoremap clsh 26cc
+nnoremap clsj 27cc
+nnoremap clsk 28cc
+nnoremap clsl 29cc
  
-
+nnoremap yle lc$
+nnoremap yle c$
+nnoremap yls 2yy
+nnoremap yld 3yy
+nnoremap ylf 4yy
+nnoremap ylg 5yy
+nnoremap ylh 6yy
+nnoremap ylj 7yy
+nnoremap ylk 8yy
+nnoremap yll 9yy
+nnoremap yla 10yy
+nnoremap ylaa 11yy
+nnoremap ylas 12yy
+nnoremap ylad 13yy
+nnoremap ylaf 14yy
+nnoremap ylag 15yy
+nnoremap ylah 16yy
+nnoremap ylaj 17yy
+nnoremap ylak 18yy
+nnoremap ylal 19yy
+nnoremap yla; 20yy
+nnoremap ylsa 21yy
+nnoremap ylss 22yy
+nnoremap ylsd 23yy
+nnoremap ylsf 24yy
+nnoremap ylsg 25yy
+nnoremap ylsh 26yy
+nnoremap ylsj 27yy
+nnoremap ylsk 28yy
+nnoremap ylsl 29yy
+ 
 "===================================== 
-"  Navigation Shortcuts  								  
+"  Window Navigation
 "===================================== 
+nnoremap K 8k8<c-y>
+nnoremap J 8j8<c-e>
 nnoremap <c-J> <C-W><C-J>    
 nnoremap <c-K> <C-W><C-K>
 nnoremap <c-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-nnoremap K 8k8<c-y>
-nnoremap J 8j8<c-e>
 nnoremap <leader>q q
 nnoremap <leader><leader>m m
 nnoremap q b
 
+"==========================================
+" Navigating to next braces
+"==========================================
+noremap <leader>cic /{*}<cr>ciB<space><space><left>
+noremap <leader>cib /(*)<cr>cib
+noremap <leader>ciq /"*"<cr>ci"
+noremap <leader>cis /'*'<cr>ci'
+
+"==========================================
+" Navigating to Line Number
+"==========================================
+nnoremap <leader>s<leader> :+2<Cr>
+nnoremap <leader>d<leader> :+3<Cr>
+nnoremap <leader>f<leader> :+4<Cr>
+nnoremap <leader>g<leader> :+5<Cr>
+nnoremap <leader>h<leader> :+6<Cr>
+nnoremap <leader>j<leader> :+7<Cr>
+nnoremap <leader>k<leader> :+8<Cr>
+nnoremap <leader>l<leader> :+9<Cr>
+nnoremap <leader>a<leader> :+10<Cr>
+nnoremap <leader>a;<leader> :+10<Cr>
+nnoremap <leader>aa<leader> :+11<Cr>
+nnoremap <leader>as<leader> :+12<Cr>
+nnoremap <leader>ad<leader> :+13<Cr>
+nnoremap <leader>af<leader> :+14<Cr>
+nnoremap <leader>ag<leader> :+15<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader>ah<leader> :+16<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader>aj<leader> :+17<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader>ak<leader> :+18<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader>al<leader> :+19<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader>s;<leader> :+20<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader>sa<leader> :+21<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader>ss<leader> :+22<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader>sd<leader> :+23<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader>sf<leader> :+24<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader>sg<leader> :+25<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader>sh<leader> :+26<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader>sj<leader> :+27<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader>sk<leader> :+28<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader>sl<leader> :+29<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader>d;<leader> :+30<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader><leader>s<leader> :-2<Cr>
+nnoremap <leader><leader>d<leader> :-3<Cr>
+nnoremap <leader><leader>f<leader> :-4<Cr>
+nnoremap <leader><leader>g<leader> :-5<Cr>
+nnoremap <leader><leader>h<leader> :-6<Cr>
+nnoremap <leader><leader>j<leader> :-7<Cr>
+nnoremap <leader><leader>k<leader> :-8<Cr>
+nnoremap <leader><leader>l<leader> :-9<Cr>
+nnoremap <leader><leader>a<leader> :-10<Cr>
+nnoremap <leader><leader>;<leader> :-10<Cr>
+nnoremap <leader><leader>a;<leader> :-10<Cr>
+nnoremap <leader><leader>aa<leader> :-11<Cr>
+nnoremap <leader><leader>as<leader> :-12<Cr>
+nnoremap <leader><leader>ad<leader> :-13<Cr>
+nnoremap <leader><leader>af<leader> :-14<Cr>
+nnoremap <leader><leader>ag<leader> :-15<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader><leader>ah<leader> :-16<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader><leader>aj<leader> :-17<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader><leader>ak<leader> :-18<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader><leader>al<leader> :-19<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader><leader>s;<leader> :-20<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader><leader>sa<leader> :-21<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader><leader>ss<leader> :-22<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader><leader>sd<leader> :-23<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader><leader>sf<leader> :-24<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader><leader>sg<leader> :-25<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader><leader>sh<leader> :-26<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader><leader>sj<leader> :-27<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader><leader>sk<leader> :-28<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader><leader>sl<leader> :-29<Cr>zz<c-e><c-e><c-e><c-e>
+nnoremap <leader><leader>d;<leader> :-30<Cr>zz<c-e><c-e><c-e><c-e>
+
 "===================================== 
-" Search and Sneak Plugin Shortcut                   
+" File Nav & Search
 "===================================== 
 nnoremap <leader>p :ProjectRootCD<Cr>:FZF<Cr>
+nnoremap <leader><leader>search :Ack -i   ~/enlist_rails <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+vnoremap <leader><leader> :s//g<left><left>
 map s <Plug>Sneak_s
 xmap s <Plug>Sneak_s
 map <Leader>s <Plug>Sneak_S
@@ -186,11 +300,11 @@ set nohlsearch
 nnoremap <leader><leader>p "_dP
 
 "===================================== 
-" Custom Short Command Line Settings  								  
+" Custom Short Command Functions
 "===================================== 
+"// CHANGE DISPLAY FUNCTIONS //"
 nnoremap <leader><leader>source :silent! source ~/.vimrc<Cr>
 nnoremap <leader><leader>bar :call StatusLineCycle()<Cr>
-nnoremap <leader><leader>info <esc><S-k>
 nnoremap <leader><leader>nums :set nu rnu<Cr>
 nnoremap <leader><leader>nonum :set nornu nu!<Cr>
 nnoremap <leader><leader>min0 :let w:minimal_mode = 0<Cr>
@@ -206,58 +320,20 @@ nnoremap <leader><leader>ac3 :call Accordion(3)<Cr>
 nnoremap <leader><leader>ac4 :call Accordion(4)<Cr>
 nnoremap <leader><leader>ac5 :call Accordion(5)<Cr>
 nnoremap <leader><leader>ac6 :call Accordion(6)<Cr>
+
+"// ACTION FUNCTIONS //"
+nnoremap <leader><leader>info <esc><S-k>
 nnoremap <leader><leader>reek :RunReek<Cr>
 nnoremap <leader><leader>show :call ShowSpaces()<Cr>
 nnoremap <leader><leader>trim :call TrimSpaces()<Cr>
-nnoremap <leader><leader>search :Ack -i   ~/enlist_rails <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
-vnoremap <leader><leader> :s//g<left><left>
-
-"==========================================
-" Custom RSpec Block Snippets
-"==========================================
-nnoremap ,rspec :-1read $HOME/.vim/snippets/rspec_snippet.html<CR>
-nnoremap ,context :-1read $HOME/.vim/snippets/context_snippet.html<CR>
-nnoremap ,describe :-1read $HOME/.vim/snippets/describe_snippet.html<CR>
-nnoremap ,feature :-1read $HOME/.vim/snippets/rspec_feature_snippet.html<CR>
-inoremap ,rspec <Esc>:-1read $HOME/.vim/snippets/rspec_snippet.html<CR>
-inoremap ,context <Esc>:-1read $HOME/.vim/snippets/context_snippet.html<CR>
-inoremap ,describe <Esc>:-1read $HOME/.vim/snippets/describe_snippet.html<CR>
-inoremap ,feature <Esc>:-1read $HOME/.vim/snippets/rspec_feature_snippet.html<CR>
-inoremap ,factory <Esc>:-1read $HOME/.vim/snippets/factory_snippet.html<CR>
-nnoremap ,factory <Esc>:-1read $HOME/.vim/snippets/factory_snippet.html<CR>
-inoremap ,req require ''<left>
-nnoremap ,req irequire ''<left>
-
-"==========================================
-" RSpec Custom Block Snippets
-"==========================================
-inoremap spec<cr> <Esc>ddoRSpec.describe '' do<CR>end<Esc><up><Esc>f'a
-inoremap specf<Cr> <Esc>ddoRSpec.feature '' do<CR>end<Esc><up><Esc>f'a
-nnoremap spec<cr> <Esc>ddoRSpec.describe '' do<CR>end<Esc><up><Esc>f'a
-nnoremap specf<Cr> <Esc>ddoRSpec.feature '' do<CR>end<Esc><up><Esc>f'a
-inoremap describe<cr> describe '' do<CR>end<Esc><up><Esc>f'a
-nnoremap describe<Cr> describe '' do<CR>end<Esc><up><Esc>f'a
-inoremap context<cr> context '' do<CR>end<Esc><up><Esc>f'a
-nnoremap context<Cr> context '' do<CR>end<Esc><up><Esc>f'a
-inoremap scenario<cr> scenario '' do<CR>end<Esc><up><Esc>f'a
-nnoremap scenario<Cr> scenario '' do<CR>end<Esc><up><Esc>f'a
-inoremap feature<cr> feature '' do<CR>end<Esc><up><Esc>f'a
-nnoremap feature<Cr> feature '' do<CR>end<Esc><up><Esc>f'a
-inoremap it<cr> it '' do<CR>end<Esc><up><Esc>f'a
-nnoremap it<Cr> it '' do<CR>end<Esc><up><Esc>f'a
-
+let g:reek_on_loading = 0
 
 "#####################################
 "#####################################
-"###### BELOW HERE IS FUNCTIONS ######
+"###### BELOW IS ONLY FUNCTIONS ######
 "#####################################
 "#####################################
 "
-"===================================== 
-" Reek setings
-"===================================== 
-let g:reek_on_loading = 0
-
 "===================================== 
 " Custom Accordion Window Arrangement      
 "===================================== 
@@ -265,6 +341,7 @@ let w:accordion = 5
 let w:minimal_mode = 0
 let w:num_hide_mode = 1
 let w:wrap_mode = 0
+
 function! Accordion(...)
 	if a:0 > 0
 		let w:accordion = a:1 - 1
@@ -609,68 +686,6 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
-nnoremap <leader>s<leader> :+2<Cr>
-nnoremap <leader>d<leader> :+3<Cr>
-nnoremap <leader>f<leader> :+4<Cr>
-nnoremap <leader>g<leader> :+5<Cr>
-nnoremap <leader>h<leader> :+6<Cr>
-nnoremap <leader>j<leader> :+7<Cr>
-nnoremap <leader>k<leader> :+8<Cr>
-nnoremap <leader>l<leader> :+9<Cr>
-nnoremap <leader>a<leader> :+10<Cr>
-nnoremap <leader>a;<leader> :+10<Cr>
-nnoremap <leader>aa<leader> :+11<Cr>
-nnoremap <leader>as<leader> :+12<Cr>
-nnoremap <leader>ad<leader> :+13<Cr>
-nnoremap <leader>af<leader> :+14<Cr>
-nnoremap <leader>ag<leader> :+15<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader>ah<leader> :+16<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader>aj<leader> :+17<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader>ak<leader> :+18<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader>al<leader> :+19<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader>s;<leader> :+20<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader>sa<leader> :+21<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader>ss<leader> :+22<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader>sd<leader> :+23<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader>sf<leader> :+24<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader>sg<leader> :+25<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader>sh<leader> :+26<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader>sj<leader> :+27<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader>sk<leader> :+28<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader>sl<leader> :+29<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader>d;<leader> :+30<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader><leader>s<leader> :-2<Cr>
-nnoremap <leader><leader>d<leader> :-3<Cr>
-nnoremap <leader><leader>f<leader> :-4<Cr>
-nnoremap <leader><leader>g<leader> :-5<Cr>
-nnoremap <leader><leader>h<leader> :-6<Cr>
-nnoremap <leader><leader>j<leader> :-7<Cr>
-nnoremap <leader><leader>k<leader> :-8<Cr>
-nnoremap <leader><leader>l<leader> :-9<Cr>
-nnoremap <leader><leader>a<leader> :-10<Cr>
-nnoremap <leader><leader>;<leader> :-10<Cr>
-nnoremap <leader><leader>a;<leader> :-10<Cr>
-nnoremap <leader><leader>aa<leader> :-11<Cr>
-nnoremap <leader><leader>as<leader> :-12<Cr>
-nnoremap <leader><leader>ad<leader> :-13<Cr>
-nnoremap <leader><leader>af<leader> :-14<Cr>
-nnoremap <leader><leader>ag<leader> :-15<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader><leader>ah<leader> :-16<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader><leader>aj<leader> :-17<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader><leader>ak<leader> :-18<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader><leader>al<leader> :-19<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader><leader>s;<leader> :-20<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader><leader>sa<leader> :-21<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader><leader>ss<leader> :-22<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader><leader>sd<leader> :-23<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader><leader>sf<leader> :-24<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader><leader>sg<leader> :-25<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader><leader>sh<leader> :-26<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader><leader>sj<leader> :-27<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader><leader>sk<leader> :-28<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader><leader>sl<leader> :-29<Cr>zz<c-e><c-e><c-e><c-e>
-nnoremap <leader><leader>d;<leader> :-30<Cr>zz<c-e><c-e><c-e><c-e>
-
 "==========================================
 " Quickfix Shortcuts
 "==========================================
@@ -687,6 +702,39 @@ endfunction
 " Use map <buffer> to only map dd in the quickfix window. Requires +localmap
 autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
 
+"==========================================
+" Custom RSpec Block Snippets
+"==========================================
+nnoremap ,rspec :-1read $HOME/.vim/snippets/rspec_snippet.html<CR>
+nnoremap ,context :-1read $HOME/.vim/snippets/context_snippet.html<CR>
+nnoremap ,describe :-1read $HOME/.vim/snippets/describe_snippet.html<CR>
+nnoremap ,feature :-1read $HOME/.vim/snippets/rspec_feature_snippet.html<CR>
+inoremap ,rspec <Esc>:-1read $HOME/.vim/snippets/rspec_snippet.html<CR>
+inoremap ,context <Esc>:-1read $HOME/.vim/snippets/context_snippet.html<CR>
+inoremap ,describe <Esc>:-1read $HOME/.vim/snippets/describe_snippet.html<CR>
+inoremap ,feature <Esc>:-1read $HOME/.vim/snippets/rspec_feature_snippet.html<CR>
+inoremap ,factory <Esc>:-1read $HOME/.vim/snippets/factory_snippet.html<CR>
+nnoremap ,factory <Esc>:-1read $HOME/.vim/snippets/factory_snippet.html<CR>
+inoremap ,req require ''<left>
+nnoremap ,req irequire ''<left>
+
+"==========================================
+" RSpec Custom Block Snippets
+"==========================================
+inoremap spec<cr> <Esc>ddoRSpec.describe '' do<CR>end<Esc><up><Esc>f'a
+inoremap specf<Cr> <Esc>ddoRSpec.feature '' do<CR>end<Esc><up><Esc>f'a
+nnoremap spec<cr> <Esc>ddoRSpec.describe '' do<CR>end<Esc><up><Esc>f'a
+nnoremap specf<Cr> <Esc>ddoRSpec.feature '' do<CR>end<Esc><up><Esc>f'a
+inoremap describe<cr> describe '' do<CR>end<Esc><up><Esc>f'a
+nnoremap describe<Cr> describe '' do<CR>end<Esc><up><Esc>f'a
+inoremap context<cr> context '' do<CR>end<Esc><up><Esc>f'a
+nnoremap context<Cr> context '' do<CR>end<Esc><up><Esc>f'a
+inoremap scenario<cr> scenario '' do<CR>end<Esc><up><Esc>f'a
+nnoremap scenario<Cr> scenario '' do<CR>end<Esc><up><Esc>f'a
+inoremap feature<cr> feature '' do<CR>end<Esc><up><Esc>f'a
+nnoremap feature<Cr> feature '' do<CR>end<Esc><up><Esc>f'a
+inoremap it<cr> it '' do<CR>end<Esc><up><Esc>f'a
+nnoremap it<Cr> it '' do<CR>end<Esc><up><Esc>f'a
 
 "==========================================
 " Pomodoro Timer PlugIn
@@ -1050,13 +1098,6 @@ function TaskCount(...)
 		:execute "normal! VG:s/-/-/gn"
 endfunction
 
-"==========================================
-" Navigating to next braces
-"==========================================
-noremap <leader>cic /{*}<cr>ciB<space><space><left>
-noremap <leader>cib /(*)<cr>cib
-noremap <leader>ciq /"*"<cr>ci"
-noremap <leader>cis /'*'<cr>ci'
 
 "==========================================
 " Typescript CoC extensions
@@ -1110,11 +1151,11 @@ nmap <leader>do <Plug>(coc-codeaction)
 nmap <leader>diag :CocDiagnostic<Cr>
 nmap <leader><leader>diag :CocDiagnostic<Cr>
 
-
 "==========================================
 " Typescript code generation snippets
 "==========================================
 nnoremap ,func <Esc>:-1read $HOME/.vim/snippets/js_function_snippet.html<CR>
+
 " Make <TAB> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <Cr> pumvisible() ? coc#_select_confirm()
