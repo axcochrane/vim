@@ -1,0 +1,27 @@
+{
+  "tsserver.enable": true,
+  "tsserver.formatOnType": true,
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.snippets.enable": true,
+  "typescript.suggest.enabled": true,
+  "signature.enable": true,
+  "suggest.noselect": true,
+  "suggest.enablePreview": true,
+  "suggest.echodocSupport": true,
+  "suggest.floatEnable": true,
+	"signature.target": "float",
+	"hover.target": "float",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "javascriptreact",
+    "typescript.tsx",
+    "graphql"
+  ],
+  "prettier.disableSuccessMessage": true,
+  "tsserver.tsdk": ".yarn/sdks/typescript/lib",
+  "eslint.packageManager": "yarn",
+  "eslint.nodePath": ".yarn/sdks"
+}

@@ -1,26 +1,47 @@
 {
-  "tsserver.formatOnType": true,
+  "codeLens.enable": true,
+  "coc.preferences.extensionUpdateCheck": "daily",
   "coc.preferences.formatOnType": true,
-  "coc.preferences.snippets.enable": true,
-  "suggest.noselect": false,
+  "coc.preferences.willSaveHandlerTimeout": 1000,
   "coc.preferences.formatOnSaveFiletypes": [
+    "markdown",
     "javascript",
     "typescript",
-    "typescriptreact",
     "json",
-    "javascriptreact",
-    "typescript.tsx",
-    "graphql"
+    "jsonc"
   ],
-  "eslint.autoFixOnSave": true,
-  "eslint.filetypes": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
-  "prettier.disableSuccessMessage": true,
-  "tsserver.tsdk": ".yarn/sdks/typescript/lib",
+  "coc.source.around.firstMatch": false,
+  "coc.source.file.ignoreHidden": false,
+  "diagnostic.format": "%message [%source]",
+  "diagnostic.virtualText": true,
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.separateRelatedInformationAsDiagnostics": true,
   "eslint.packageManager": "yarn",
-  "eslint.nodePath": ".yarn/sdks"
+  "list.normalMappings": {
+    "<C-c>": "do:exit"
+  },
+  "list.insertMappings": {
+    "<C-c>": "do:exit"
+  },
+  "markdownlint.config": {
+    "default": true,
+    "line-length": false
+  },
+  "signature.enable": true,
+  "signature.preferShownAbove": true,
+  "suggest.floatEnable": true,
+  "hover.target": "float",
+  "signature.target": "echo",
+  "suggest.timeout": 5000,
+  "suggest.defaultSortMethod": "none",
+  "suggest.asciiCharactersOnly": true,
+  "snippets.ultisnips.enable": false,
+  "snippets.ultisnips.usePythonx": false,
+  "snippets.extends": {
+    "javascriptreact": ["javascript"],
+    "typescript": ["javascript"]
+  },
+  "typescript.format.semicolons": "insert",
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+  "typescript.preferences.useAliasesForRenames": false
 }
