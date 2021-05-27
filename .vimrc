@@ -1,4 +1,13 @@
 "===================================== 
+" Todo
+"===================================== 
+" - [ ] TODO: sneak backwards
+" - [ ] TODO: sneak column implementation
+" - [X] [IMPLEMENTED]: <ctrl-i> to backwards traverse jumplist. 
+"   - [UPDATE] Implemented using <ctrl-p> as <ctrl-i> appears to be in use on 
+" 	one of the coc.extensions. 
+
+"===================================== 
 " Basic Settings
 "===================================== 
 set noswapfile
@@ -14,7 +23,6 @@ filetype indent on
 "===================================== 
 " Basic Appearance Settings						  
 "===================================== 
-colorscheme molokai
 set background=dark
 syntax on
 set lazyredraw  
@@ -56,24 +64,7 @@ highlight LineNr term=NONE cterm=NONE ctermfg=238 ctermbg=NONE
 highlight CursorLine ctermbg=NONE ctermfg=NONE
 highlight Cursor ctermbg=214 ctermfg=NONE 
 highlight CursorLineNr term=NONE cterm=bold ctermfg=240 
-
-" // Current line highlighting only in active window //
-au BufEnter * setlocal cursorline
-au BufLeave * setlocal nocursorline
-
-" // Change current line number colcur in Insert Mode //
-autocmd InsertLeave * highlight CursorLineNr term=NONE cterm=NONE ctermfg=226 ctermbg=NONE
-autocmd InsertEnter * highlight CursorLineNr term=NONE cterm=NONE ctermfg=41 ctermbg=NONE
-
-" // Removes line numbers in Insert Mode //
-autocmd InsertEnter * highlight LineNr term=NONE cterm=NONE ctermfg=235 ctermbg=NONE
-autocmd InsertLeave * highlight LineNr term=NONE cterm=NONE ctermfg=238 ctermbg=NONE
-
-" // Change line highlighting on Insert Mode //
-autocmd InsertEnter * highlight CursorLine ctermbg=24 ctermfg=255 cterm=NONE
-autocmd InsertLeave * highlight CursorLine ctermbg=none ctermfg=NONE cterm=NONE
-
-
+"
 "===================================== 
 " Leader Settings
 "===================================== 
@@ -107,23 +98,20 @@ vnoremap k j
 vnoremap l k
 vnoremap ; l
 
+
+let g:sneak#s_next = 1
 ""========================================
 ""  NetRW Settings                     
 ""========================================
 let g:netrw_banner=0
-if argv(0) ==# '.'
-  let g:netrw_browse_split = 0
-else
-  let g:netrw_browse_split = 4
-endif
+let g:netrw_browse_split = 0
 let g:netr_altv=1
-let g:netrw_liststyle=3
+let g:netrw_liststyle=5
 "
 " enable line numbers in netrw window
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 let g:netrw_sort_by = 'name'
 let g:netrw_sort_direction = 'normal'
-let g:netrw_winsize = 25
 let g:netrw_usetab = 1
 hi netrwTilde	term=NONE cterm=NONE gui=NONE ctermfg=12 guifg=red
 hi netrwTags term=NONE cterm=NONE gui=NONE ctermfg=12 guifg=red
@@ -143,39 +131,64 @@ function! ToggleNetrw()
 			let i-=1
 		endwhile
 		let g:NetrwIsOpen=0
+		let g:netrw_winsize = 50
 	else
+		let g:netrw_winsize = 25
 		let g:NetrwIsOpen=1
 		silent Lexplore
 	endif
 endfunction
 
+augroup AutoDeleteNetrwHiddenBuffers
+	au!
+	au FileType netrw setlocal bufhidden=wipe
+augroup end
+
+
 noremap <Leader>nt :Vex<Cr>
-" noremap <Leader>nd :Lexplore<Cr>
 noremap <Leader>nd :call ToggleNetrw()<Cr>
+
+nnoremap <Leader><Leader>vex :Vex<CR>
+nnoremap <Leader><Leader>sex :Sex<CR>
+nnoremap <Leader><Leader>rex :Rex<CR>
+nnoremap <Leader><Leader>lex :Lex<CR>
+nnoremap <Leader><Leader>hex :Hex<CR>
+nnoremap <Leader><Leader>ex :Ex<CR>
 "
 ""========================================
 ""  Plugins
 ""========================================
 call plug#begin('~/.vim/plugged')
+  Plug 'triglav/vim-visual-increment'
+  Plug 'sainnhe/vim-color-forest-night'
+  Plug 'zeis/vim-kolor'
+  Plug 'cocopon/iceberg.vim'
+  Plug 'mhartington/oceanic-next'
+  Plug 'ngmy/vim-rubocop'
+  Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-rails'
+  Plug 'tpope/vim-dispatch'
+  Plug 'vim-ruby/vim-ruby'
+	Plug 'thoughtbot/vim-rspec'
+  Plug 'junegunn/fzf'
+  Plug 'simeji/winresizer'
+  Plug 'dbakker/vim-projectroot'
+  Plug 'justinmk/vim-sneak'
+  Plug 'rainerborene/vim-reek'
+	Plug 'vim-syntastic/syntastic'
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
   if has('nvim')
 		Plug 'nvim-lua/popup.nvim'
 	  Plug 'nvim-lua/plenary.nvim'
 	  Plug 'nvim-telescope/telescope.nvim'
 	endif
-	Plug 'jceb/vim-orgmode'
-  Plug 'ngmy/vim-rubocop'
-  Plug 'rainerborene/vim-reek'
-	Plug 'vim-syntastic/syntastic'
-	Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'tpope/vim-rails'
-  Plug 'vim-ruby/vim-ruby'
-  Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-commentary'
-	Plug 'thoughtbot/vim-rspec'
-  Plug 'junegunn/fzf'
-  Plug 'tpope/vim-repeat'
-  Plug 'simeji/winresizer'
-  Plug 'justinmk/vim-sneak'
+	Plug 'autozimu/LanguageClient-neovim', {
+		    \ 'branch': 'next',
+	      \ 'do': 'bash install.sh',
+	      \ }
+
 call plug#end()
 
 "==========================================
@@ -195,11 +208,10 @@ let g:coc_global_extensions = [
   \ 'coc-sql',
   \ 'coc-tabnine',
   \ 'coc-yaml',
+  \ 'coc-solargraph'
   \ ]
 
 " // Popup menu styling
-highlight Pmenu ctermbg=237 
-highlight PmenuSel ctermbg=236
 set updatetime=40000
 
 nmap <silent> <leader>gd <Plug>(coc-definition)
@@ -240,13 +252,15 @@ nnoremap <leader><leader>source :silent! source ~/.vimrc<Cr>
 nnoremap <leader><leader>pre :CocCommand prettier.formatFile<cr>
 nnoremap <leader><leader>info <esc><S-k>
 nnoremap <leader><leader>reek :RunReek<Cr>
+nnoremap <leader><leader>rub :RuboCop<Cr>
 nnoremap <leader><leader>trim :call TrimSpaces()<Cr>
 nnoremap <leader><leader>vimrc :vert botright split ~/.vimrc<Cr>
 nnoremap <leader><leader>bar :call StatusLineCycle()<Cr>
 vnoremap <leader><leader> :s//g<left><left>
 nnoremap L 8k8<c-y>
 nnoremap K 8j8<c-e>
-
+nnoremap <leader><leader>tags :ProjectRootExe !ctags -R .<cr>
+nnoremap <C-p> <C-i>
 
 " /****************************************************/
 " // Filename: home_row_numbers_plugin
@@ -288,7 +302,7 @@ nnoremap K 8j8<c-e>
 " // for n number of lines using the same method to 
 " // select the number of lines we wish to act over.
 "==========================================
-" Navigating to Line Number
+" Navigating to Line Number #linejump
 "==========================================
 nnoremap <leader>s<leader> :+2<Cr>
 nnoremap <leader>d<leader> :+3<Cr>
@@ -353,7 +367,7 @@ nnoremap <leader><leader>sl<leader> :-29<Cr>zz<c-e><c-e><c-e><c-e>
 nnoremap <leader><leader>d;<leader> :-30<Cr>zz<c-e><c-e><c-e><c-e>
 "
 "==========================================
-" Yank, cut and paste whole line functions
+" Yank, cut and paste whole lines #linejump
 "==========================================
 nnoremap dls 2dd
 nnoremap dld 3dd
@@ -559,7 +573,7 @@ function StatusLineShow()
 	set showtabline=1
 	hi VertSplit ctermbg=NONE ctermfg=238
 	hi TabLineFill ctermfg=NONE ctermbg=NONE cterm=NONE
-	hi TabLine ctermfg=NONE ctermbg=NONE cterm=NONE
+	hi TabLine ctermfg=238 ctermbg=NONE cterm=NONE
 	hi TabLineSel ctermfg=yellow ctermbg=NONE cterm=NONE
 	hi StatusLine ctermbg=NONE ctermfg=242
 	hi StatusLineNC ctermbg=NONE ctermfg=238
@@ -574,33 +588,36 @@ function StatusLineHide()
 	set noshowmode
 	set noruler
 	set laststatus=0
+	set showtabline=0
 	set noshowcmd
 	hi StatusLine ctermbg=NONE ctermfg=244
 	hi StatusLineNC ctermbg=NONE ctermfg=238
-	set showtabline=0
 	highlight EndOfBuffer ctermbg=NONE ctermfg=236
 endfunction
 
 function StatusLineDefault()
-	let g:status_line_default_mode = get(g:, 'status_line_default_mode', 'shown')
-	if g:status_line_default_mode == 'amber' | call StatusLineAmber()
+	let    g:status_line_default_mode = get(g:, 'status_line_default_mode', 'shown')
+	if     g:status_line_default_mode == 'amber' | call StatusLineAmber()
 	elseif g:status_line_default_mode == 'shown' | call StatusLineShow()
 	endif
-	let &statusline='___%t_%m'
+	let    &statusline='___%t_%m'
 endfunction
 
-function StatusLineCycle()
-	let g:status_line_mode = get(g:, 'status_line_mode', 'shown')
-	if g:status_line_mode == 'shown' | call StatusLineHide()
-	" elseif g:status_line_mode == 'pomodoro' | call StatusLineDefault()
-	" elseif g:status_line_mode == 'hidden' | call StatusLinePomodoro()
-	else | call StatusLineDefault()
+function StatusLineCycle(...)
+	let    g:status_line_mode = get(g:, 'status_line_mode', 'start')
+	if     g:status_line_mode == 'start'  | call StatusLineShow()                              | let g:status_line_mode = 'shown'   | let &statusline='___%t_%m'
+	elseif g:status_line_mode == 'shown'  | set fillchars=stl:^,stlnc:_,vert:\│,fold:-,diff:-, | let g:status_line_mode = 'stock'   | let &statusline=' %t %m'
+	elseif g:status_line_mode == 'stock'  | set fillchars=vert:\│,stl:_,stlnc:_,               | let g:status_line_mode = 'orig'    | let &statusline='___%t_%m'
+	elseif g:status_line_mode == 'orig'   | set fillchars=vert:.,stl:_,stlnc:_,                | let g:status_line_mode = 'light'   | let &statusline='___%t_%m'
+	elseif g:status_line_mode == 'light'  | set fillchars=vert:\ ,stl:_,stlnc:_,               | let g:status_line_mode = 'light_2' | let &statusline='___%t_%m'
+	elseif g:status_line_mode == 'light_2'| set fillchars=vert:.,stl:.,stlnc:.,                | let g:status_line_mode = 'dots'    | let &statusline='...%t.%m'
+	elseif g:status_line_mode == 'dots'   | set fillchars=vert:\ ,stl:\ ,stlnc:\ ,             | let g:status_line_mode = 'blank'   | let &statusline='   %t %m'
+	elseif g:status_line_mode == 'blank'  | call StatusLineHide()                              | let g:status_line_mode = 'hidden'  | let &statusline=''
+	elseif g:status_line_mode == 'hidden' | call StatusLineShow()                              | let g:status_line_mode = 'shown'   | let &statusline='___%t_%m'
+	else                                  | call StatusLineShow()                              | let g:status_line_mode = 'shown'   | let &statusline='___%t_%m'
 	endif
 endfunction
 
-let w:accordion = 5
-:call StatusLineDefault()
-"
 " /****************************************************/
 " // Filename: Customer.cpp
 " // Created: John Doe
@@ -724,3 +741,218 @@ map <Leader>nspec :call RunNearestSpec()<CR>
 map <Leader>lspec :call RunLastSpec()<CR>
 map <Leader>rspec :call RunAllSpecs()<CR>
 
+"===================================== 
+" ColorSchemes
+"===================================== 
+colorscheme monokai
+
+let w:color_scheme_cycle = 0
+
+function! CycleColourScheme(...)
+	if a:0 > 0
+		let w:color_scheme_cycle = a:1 - 1
+	else
+	endif
+	if w:color_scheme_cycle == 0 
+		let w:color_scheme_cycle = 1
+		colorscheme monokai
+		echo 'ColorScheme: monokai'
+	elseif w:color_scheme_cycle == 1 
+		let w:color_scheme_cycle = 2
+		colorscheme OceanicNext
+		echo 'ColorScheme: OceanicNext'
+	elseif w:color_scheme_cycle == 2 
+		let w:color_scheme_cycle = 3
+		colorscheme iceberg
+		echo 'ColorScheme: iceberg'
+	elseif w:color_scheme_cycle == 3 
+		let w:color_scheme_cycle = 4
+		colorscheme kolor
+		echo 'ColorScheme: kolor'
+	elseif w:color_scheme_cycle == 4 
+		let w:color_scheme_cycle = 5
+		colorscheme everforest
+		echo 'ColorScheme; everforest'
+	elseif w:color_scheme_cycle == 5 
+		let w:color_scheme_cycle = 0
+		echo 'ColorScheme:'
+	else
+	endif
+endfunction
+
+nnoremap <leader><leader>color  :call CycleColourScheme()<Cr>
+nnoremap <leader><leader>color1 :call CycleColourScheme(1)<Cr>
+nnoremap <leader><leader>color2 :call CycleColourScheme(2)<Cr>
+nnoremap <leader><leader>color3 :call CycleColourScheme(3)<Cr>
+nnoremap <leader><leader>color4 :call CycleColourScheme(4)<Cr>
+nnoremap <leader><leader>color5 :call CycleColourScheme(5)<Cr>
+nnoremap <leader><leader>color6 :call CycleColourScheme(6)<Cr>
+"
+"===================================== 
+"" Set Syntastic Linters
+"===================================== 
+let g:syntastic_ruby_checkers = ["mri", "reek", "rubocop"]
+"  let g:syntastic_quiet_messages = {
+"" "type": "style",
+"}
+
+let g:syntastic_stl_format = "%E{[%e]}%W{[%w]}"
+let g:syntastic_auto_jump = 0
+let g:syntastic_enable_highlighting = 0
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_aggregate_errors = 1
+
+
+
+"===================================== 
+"" SolarGraph Config
+"===================================== 
+set runtimepath+=~/.vim-plugins/LanguageClient-neovim
+let g:LanguageClient_serverCommands = {
+    \ 'ruby': ['bundle exec solargraph stdio']
+    \ }
+"
+" 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+" note that if you are using Plug mapping you should not use `noremap` mappings.
+" nmap <F5> <Plug>(lcn-menu) 
+" Or map each action separately
+nnoremap <silent> <tab> :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()CR><
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()CR><>
+
+"===================================== 
+"" Set Popup Menu Colours
+"===================================== 
+function MenuColoursCycle()
+	highlight Pmenu ctermbg=253 ctermfg=32 cterm=none term=none
+	highlight PmenuSel ctermbg=250 ctermfg=32 cterm=none term=none
+	highlight PmenuThumb ctermbg=81
+	highlight PmenuSbar ctermbg=none
+	highlight Tooltip ctermbg=81
+	highlight Menu ctermbg=81
+endfunction
+
+" // Set MenuColoursCycle to the correct setting on Vim start
+:call MenuColoursCycle()
+"
+"========================================
+" Number Column and Cursor Line Colour
+"========================================
+" // Current line highlighting only in active window //
+au BufEnter * setlocal cursorline
+au BufLeave * setlocal nocursorline
+au BufEnter * setlocal rnu number
+au BufLeave * setlocal nornu nonumber
+
+" // Change current line number colcur in Insert Mode //
+autocmd InsertLeave * highlight CursorLineNr term=NONE cterm=NONE ctermfg=226 ctermbg=NONE
+autocmd InsertEnter * highlight CursorLineNr term=NONE cterm=NONE ctermfg=41 ctermbg=NONE
+
+" // Removes line numbers in Insert Mode //
+autocmd InsertEnter * highlight LineNr term=NONE cterm=NONE ctermfg=235 ctermbg=NONE
+autocmd InsertLeave * highlight LineNr term=NONE cterm=NONE ctermfg=238 ctermbg=NONE
+
+" // Change line highlighting on Insert Mode //
+autocmd InsertEnter * highlight CursorLine ctermbg=24 ctermfg=255 cterm=NONE
+autocmd InsertLeave * highlight CursorLine ctermbg=none ctermfg=NONE cterm=NONE
+
+" // Set Cusorline and Number column defaults on Vim start
+highlight CursorLine ctermbg=none ctermfg=NONE cterm=NONE
+highlight LineNr term=NONE cterm=NONE ctermfg=238 ctermbg=NONE
+highlight CursorLineNr term=NONE cterm=NONE ctermfg=226 ctermbg=NONE
+
+" // Set StatusLineCycle to the correct mode on Vim start
+" :call StatusLineCycle('light_2')
+"
+"===================================== 
+" Set Custom Tab Styles
+"===================================== 
+function MyTabLine(...)
+	let s = ''
+	for i in range(tabpagenr('$'))
+		if i + 1 == tabpagenr()
+			let s .= '%#TabLineSel#'
+		else
+			let s .= '%#TabLine#'
+		endif
+
+		let s .= '%' . (i + 1) . 'T'
+		let tab_1 = get(a:, 1, 'README')
+		let tab_2 = get(a:, 2, 'CODE')
+		let tab_3 = get(a:, 3, 'TESTS')
+		let tab_4 = get(a:, 4, 'FOUR')
+		let concat_1 = " " . tab_1 . '...'
+		let concat_2 = "..."  . tab_2 . '...'
+		let concat_3 = "..."  . tab_3 . '...'
+		let concat_4 = "..."  . tab_4 . '....'
+
+		let tabnames = [concat_1, concat_2, concat_3, concat_4]
+		let s .= tabnames[i]
+	endfor
+
+	let s .= '%#TabLineFill#%T'
+
+	if tabpagenr('$') > 1
+		let s .= '%=%#TabLine#%999X'
+	endif
+
+	return s
+endfunction
+
+" Now the MyTabLabel() function is called for each tab page to get its label. >
+function RedrawTabLine(...)
+	let arg_1 = get(a:, 1, 'null')
+	let arg_2 = get(a:, 2, 'null')
+	let arg_3 = get(a:, 3, 'null')
+	let arg_4 = get(a:, 4, 'null')
+
+	if arg_1 == 'null'
+		set tabline=%!MyTabLine()
+	elseif arg_2 == 'null'
+		set tabline=%!MyTabLine(arg_1)
+	elseif arg_3 == 'null'
+		set tabline=%!MyTabLine(arg_1, arg_2)
+	elseif arg_4 == 'null'
+		set tabline=%!MyTabLine(arg_1, arg_2, arg_3)
+	else 
+		set tabline=%!MyTabLine(arg_1, arg_2, arg_3, arg_4)
+	endif
+
+endfunction
+
+nnoremap <leader><leader>tab :call RedrawTabLine()<cr>
+nnoremap <leader><leader>1tab :call RedrawTabLine('')<left><left>
+nnoremap <leader><leader>2tab :call RedrawTabLine('README', '')<left><left>
+nnoremap <leader><leader>3tab :call RedrawTabLine('README', 'CODE', '')<left><left>
+nnoremap <leader><leader>4tab :call RedrawTabLine('README', 'CODE', 'TESTS', '')<left><left>
+nnoremap <leader><leader>atab :call RedrawTabLine('')<left><left>
+
+"==========================================
+" Snippets
+"==========================================
+nnoremap ,yard :-1read $HOME/.vim/snippets/yard_snippet.html<CR>
+nnoremap ,todo :-1read $HOME/.vim/snippets/todo_snippet.html<CR>
+"
+"========================================
+" Status Line and Tabline styling defaults
+"========================================
+hi VertSplit ctermbg=NONE ctermfg=238
+hi TabLineFill ctermfg=NONE ctermbg=NONE cterm=NONE
+hi TabLine ctermfg=238 ctermbg=NONE cterm=NONE
+hi TabLineSel ctermfg=yellow ctermbg=NONE cterm=NONE
+hi StatusLine ctermbg=NONE ctermfg=242
+hi StatusLineNC ctermbg=NONE ctermfg=238
+hi EndOfBuffer ctermbg=NONE
+
+"========================================
+" Dispatch Rspec runner
+"========================================
+nnoremap <leader><leader>spec :call RunCurrentSpecFile()<cr>
+nnoremap <leader><leader>rspec :Dispatch bundle exec rspec -f p %<cr>
+nnoremap <leader><leader>test :Dispatch ruby -Ilib:test test/*/**<cr>
+" :RunAllSpec
+" :RunLastSpec()
+" :RunCurrentSpecFile()
