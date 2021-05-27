@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/home/cochrane/projects/data-app/app/aggregates'
+let g:netrw_dirhist_0='/home/cochrane/projects/data-app/app'
+let g:netrw_dirhist_9='/home/cochrane/projects/data-app'
+let g:netrw_dirhist_8='/home/cochrane/projects/data-app/app/queries'
+let g:netrw_dirhist_7='/home/cochrane/projects/data-app/app/queries/lists'
+let g:netrw_dirhist_6='/home/cochrane/projects/data-app/app/queries'
+let g:netrw_dirhist_5='/home/cochrane/projects/data-app/app/queries/companies'
+let g:netrw_dirhist_4='/home/cochrane/projects/data-app/app/queries'
+let g:netrw_dirhist_3='/home/cochrane/projects/data-app/app'
+let g:netrw_dirhist_2='/home/cochrane/projects/data-app'
